@@ -1,0 +1,285 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:orientation="vertical"
+        android:layout_gravity="center"
+        android:gravity="center"
+        android:id="@+id/payment_holder"
+        android:layout_height="wrap_content">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:paddingTop="12dp"
+            android:paddingLeft="10dp"
+            android:paddingRight="10dp"
+            android:paddingBottom="12dp"
+            android:layout_marginBottom="10dp"
+            android:orientation="horizontal"
+            android:layout_height="wrap_content">
+
+            <com.mikhaellopez.circularimageview.CircularImageView
+                android:layout_width="50dp"
+                android:layout_height="50dp"
+                android:src="@drawable/defaultperson"
+                android:id="@+id/avatar"
+                app:civ_border_color="#EEEEEE"
+                app:civ_border_width="2dp"
+                app:civ_shadow="false"
+                app:civ_shadow_radius="5"
+                app:civ_shadow_color="#8BC34A"/>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:orientation="vertical"
+                android:layout_marginLeft="15dp"
+                android:layout_height="wrap_content">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:text="Adebayo Benson"
+                    android:textSize="16sp"
+                    android:id="@+id/pay_name"
+                    android:textColor="#000"
+                    android:layout_marginBottom="3dp"
+                    android:layout_height="wrap_content" />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:text="4.3"
+                    android:id="@+id/pay_rating"
+                    android:layout_marginBottom="3dp"
+                    android:textSize="14sp"
+                    android:textColor="#000"
+                    android:layout_height="wrap_content" />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:text="4.3"
+                    android:id="@+id/pay_job_done"
+                    android:layout_marginBottom="3dp"
+                    android:textSize="14sp"
+                    android:textColor="#000"
+                    android:layout_height="wrap_content" />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:text="4.3"
+                    android:id="@+id/pay_category"
+                    android:layout_marginBottom="3dp"
+                    android:textSize="14sp"
+                    android:textColor="#000"
+                    android:layout_height="wrap_content" />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:text="4.3"
+                    android:id="@+id/pay_desc"
+                    android:layout_marginBottom="3dp"
+                    android:textSize="14sp"
+                    android:textColor="#000"
+                    android:layout_height="wrap_content" />
+
+            </LinearLayout>
+
+        </LinearLayout>
+
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_marginLeft="15dp"
+            android:layout_marginRight="15dp"
+            android:layout_marginBottom="10dp"
+            android:layout_height="wrap_content">
+
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentLeft="true"
+                android:gravity="center"
+                android:textSize="16sp"
+                android:id="@+id/cost_of_service"
+                android:textColor="#000"
+                android:layout_marginBottom="5dp"
+                android:text="Cost Of Service: "/>
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentLeft="true"
+                android:gravity="center"
+                android:textSize="16sp"
+                android:id="@+id/vat_header"
+                android:layout_below="@id/cost_of_service"
+                android:textColor="#000"
+                android:layout_marginBottom="5dp"
+                android:text="VAT(5%): "/>
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentLeft="true"
+                android:gravity="center"
+                android:textSize="16sp"
+                android:layout_below="@id/vat_header"
+                android:textColor="#000"
+                android:layout_marginBottom="5dp"
+                fontPath="fonts/dosis/Dosis-Bold.otf"
+                tools:ignore="MissingPrefix"
+                android:text="Total: "/>
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:id="@+id/customer_details"
+                android:layout_alignParentRight="true"
+                android:gravity="center"
+                android:textSize="16sp"
+                android:textColor="#000"
+                android:layout_marginBottom="5dp"
+                android:text="Paying "/>
+
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:id="@+id/vat_details"
+                android:layout_alignParentRight="true"
+                android:layout_below="@id/customer_details"
+                android:gravity="center"
+                android:textSize="16sp"
+                android:textColor="#000"
+                android:layout_marginBottom="5dp"
+                android:text="0"/>
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:id="@+id/total_details"
+                android:layout_alignParentRight="true"
+                android:layout_below="@id/vat_details"
+                android:gravity="center"
+                android:textSize="16sp"
+                android:textColor="#000"
+                fontPath="fonts/dosis/Dosis-Bold.otf"
+                tools:ignore="MissingPrefix"
+                android:layout_marginBottom="5dp"
+                android:text="0"/>
+
+        </RelativeLayout>
+
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/customer_email"
+            android:gravity="center"
+            android:textSize="16sp"
+            android:layout_marginLeft="15dp"
+            android:layout_marginRight="15dp"
+            android:textColor="#000"
+            android:layout_marginBottom="15dp"
+            android:text="Your money would be kept until the provider has rendered your service to you"/>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:orientation="vertical"
+            android:id="@+id/card_details_section"
+            android:layout_height="wrap_content">
+
+            <EditText
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="10dp"
+                android:layout_marginLeft="15dp"
+                android:layout_marginRight="15dp"
+                android:hint="Card Number"
+                android:inputType="number"
+                android:background="@drawable/edittextbg"
+                android:padding="10dp"
+                android:id="@+id/credit_card_number"/>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:orientation="horizontal"
+                android:layout_marginLeft="15dp"
+                android:layout_marginRight="15dp"
+                android:layout_marginBottom="10dp"
+                android:layout_height="wrap_content">
+
+                <EditText
+                    android:layout_width="0dp"
+                    android:layout_weight="0.5"
+                    android:background="@drawable/edittextbg"
+                    android:padding="10dp"
+                    android:layout_marginRight="5dp"
+                    android:inputType="date"
+                    android:hint="MM/YY"
+                    android:layout_height="wrap_content"
+                    android:id="@+id/credit_card_expiry"/>
+
+                <EditText
+                    android:layout_width="0dp"
+                    android:layout_weight="0.5"
+                    android:padding="10dp"
+                    android:layout_marginLeft="5dp"
+                    android:hint="CVV"
+                    android:inputType="number"
+                    android:background="@drawable/edittextbg"
+                    android:layout_height="wrap_content"
+                    android:id="@+id/credit_card_ccv"/>
+
+
+            </LinearLayout>
+
+        </LinearLayout>
+
+        <fr.castorflex.android.smoothprogressbar.SmoothProgressBar
+            xmlns:android="http://schemas.android.com/apk/res/android"
+            xmlns:app="http://schemas.android.com/apk/res-auto"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:indeterminate="true"
+            android:id="@+id/progress_indicator"
+            app:spb_sections_count="4"
+            app:spb_color="#FF0000"
+            app:spb_speed="2.0"
+            app:spb_stroke_width="4dp"
+            app:spb_stroke_separator_length="4dp"
+            android:visibility="gone"
+            app:spb_reversed="false"
+            app:spb_mirror_mode="false"
+            app:spb_progressiveStart_activated="true"
+            app:spb_progressiveStart_speed="1.5"
+            app:spb_progressiveStop_speed="3.4" />
+
+
+        <com.dd.morphingbutton.impl.IndeterminateProgressButton
+            android:id="@+id/pay_button"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:textColor="#fff"
+            android:text="Pay"
+            android:layout_marginRight="15dp"
+            android:layout_marginLeft="15dp"
+            android:layout_marginBottom="10dp"
+            android:ems="15"
+            app:elevation="0dp"
+            android:elevation="0dp"
+            android:background="@color/colorPrimary"
+            tools:ignore="MissingPrefix" />
+
+        <TextView android:layout_width="wrap_content" android:layout_height="wrap_content"
+            android:textSize="14sp"
+            android:textColor="#80000000"
+            android:layout_marginTop="2dp"
+            android:text="Powered by PayStack">
+        </TextView>
+
+    </LinearLayout>
+
+</layout>
