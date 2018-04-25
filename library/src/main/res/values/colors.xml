@@ -1,14 +1,16 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <color name="colorPrimary">#1F232C</color>
+    <color name="colorPrimary">#1F2328</color>
+    <color name="paymentBackground">#1F232C</color>
     <color name="colorPrimaryDark">#ffffff</color>
-    <color name="colorAccent">#00C795</color>
-    <color name="colorAccentDark">#008664</color>
+    <color name="colorPayAccent">#4990E2</color>
+    <color name="colorPayAccentDark">#417EC5</color>
     <color name="black">#000000</color>
     <color name="B7B7B7">#B7B7B7</color>
     <color name="red">#ff0000</color>
     <color name="ash">#aaaaaa</color>
-    <color name="transparent_ash">#99000000</color>
+    <color name="transparent_ash">#80000000</color>
+    <color name="transparent">#00FFFFFF</color>
     <color name="transparent_black">#B3000000</color>
     <color name="transparent_black_light">#26000000</color>
     <color name="faint_gray">#EEEEEE</color>

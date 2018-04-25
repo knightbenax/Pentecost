@@ -15,4 +15,10 @@
         app:layout_constraintRight_toRightOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
+<app.ephod.pentecost.library.paystack.PaymentView
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+</app.ephod.pentecost.library.paystack.PaymentView>
+
 </android.support.constraint.ConstraintLayout>

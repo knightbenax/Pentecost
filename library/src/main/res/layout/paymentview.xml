@@ -1,42 +1,53 @@
 <?xml version="1.0" encoding="utf-8"?>
 
-<layout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto">
+<!--<layout xmlns:android="http://schemas.android.com/apk/res/android">-->
 
-    <LinearLayout
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:orientation="vertical"
+    android:layout_gravity="center"
+    android:gravity="center"
+    android:padding="@dimen/size_22"
+    android:background="@color/transparent_ash"
+    android:id="@+id/payment_holder"
+    android:focusable="true"
+    android:focusableInTouchMode="true"
+    android:layout_height="match_parent">
+
+
+    <RelativeLayout
         android:layout_width="match_parent"
-        android:orientation="vertical"
-        android:layout_gravity="center"
-        android:gravity="center"
-        android:padding="@dimen/size_22"
-        android:background="@color/transparent_black"
-        android:id="@+id/payment_holder"
+        android:id="@+id/parent_view"
+        android:background="@drawable/round_dark_bg"
         android:layout_height="match_parent">
 
+        <ImageView
+            android:id="@+id/header_view"
+            android:src="@drawable/background"
+            android:background="@drawable/round_image_dark_bg"
+            android:scaleType="fitStart"
+            android:layout_gravity="top"
+            android:layout_height="match_parent"
+            android:layout_width="wrap_content" />
+
         <LinearLayout android:layout_height="match_parent"
-            android:background="@drawable/round_dark_bg"
+            android:background="@drawable/round_transparent_bg"
             android:layout_width="match_parent"
             android:weightSum="1"
             android:clipChildren="true"
             android:clipToPadding="true"
             android:orientation="vertical">
 
+
+
             <LinearLayout
                 android:layout_width="match_parent"
-                android:layout_weight="0.39"
-                android:padding="@dimen/size_4"
+                android:layout_weight="0.33"
                 android:clipChildren="true"
                 android:clipToPadding="true"
                 android:orientation="horizontal"
                 android:layout_height="0dp">
 
-                <com.cesards.cropimageview.CropImageView
-                    xmlns:custom="http://schemas.android.com/apk/res-auto"
-                    android:id="@+id/imageView1"
-                    android:src="@drawable/background"
-                    custom:crop="centerTop"
-                    android:layout_height="match_parent"
-                    android:layout_width="match_parent" />
 
             </LinearLayout>
 
@@ -44,7 +55,8 @@
             <LinearLayout
                 android:layout_width="match_parent"
                 android:orientation="vertical"
-                android:layout_weight="0.61"
+                android:layout_weight="0.39"
+                android:gravity="center_vertical"
                 android:layout_marginLeft="@dimen/size_16"
                 android:layout_marginRight="@dimen/size_16"
                 android:id="@+id/card_details_section"
@@ -84,16 +96,37 @@
                 </LinearLayout>
 
 
+
+            </LinearLayout>
+
+
+            <LinearLayout
+                android:layout_weight="0.28"
+                android:orientation="vertical"
+                android:layout_marginLeft="@dimen/size_16"
+                android:layout_marginRight="@dimen/size_16"
+                android:layout_width="match_parent"
+                android:layout_height="0dp">
+
+                <Button
+                    android:layout_width="match_parent"
+                    style="@style/PaymentButton"
+                    android:text="Pay"
+
+                    android:layout_height="wrap_content" />
+
                 <ImageView
                     style="@style/SecureLogo"
-                    android:src="@drawable/white"
-                     />
+                    android:src="@drawable/white_paystack_logo"
+                    />
 
             </LinearLayout>
 
 
         </LinearLayout>
 
+    </RelativeLayout>
+
     </LinearLayout>
 
-</layout>
+<!--</layout>-->

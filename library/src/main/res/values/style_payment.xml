@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<resources>
+<resources xmlns:tools="http://schemas.android.com/tools">
 
     <style name="EditTextStyle" parent="LayoutWrapHeight">
         <item name="android:background">@drawable/edit_text_bg</item>
@@ -10,16 +10,36 @@
         <item name="android:textSize">@dimen/font_14</item>
     </style>
 
-
     <style name="CCVDateHolder" parent="LayoutWrapHeight">
         <item name="android:layout_marginTop">@dimen/size_16</item>
     </style>
 
     <style name="SecureLogo">
-        <item name="android:layout_width">@dimen/size_140</item>
+        <item name="android:layout_width">@dimen/size_120</item>
         <item name="android:layout_height">wrap_content</item>
         <item name="android:layout_gravity">center</item>
         <item name="android:scaleType">centerInside</item>
+    </style>
+
+
+    <style name="PaymentButton" parent="android:Widget.Holo.Button.Borderless">
+        <item name="android:layout_marginBottom">@dimen/size_14</item>
+        <item name="android:layout_marginTop">@dimen/size_8</item>
+        <item name="android:elevation" tools:targetApi="lollipop">3dp</item>
+        <item name="android:translationZ" tools:targetApi="lollipop">0dp</item>
+        <item name="android:clipChildren">false</item>
+        <item name="android:clipToPadding">false</item>
+        <item name="android:letterSpacing" tools:targetApi="lollipop">.05</item>
+        <item name="android:stateListAnimator" tools:targetApi="lollipop">@null</item>
+        <item name="android:minHeight">0dp</item>
+        <item name="android:textStyle">bold</item>
+        <item name="android:background">@drawable/payment_button</item>
+        <item name="android:text">Pay</item>
+        <item name="android:textColor">#fff</item>
+        <item name="android:layout_width">match_parent</item>ß
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:textSize">@dimen/font_14</item>
+
     </style>
 
 
