@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <style name="EditTextStyle" parent="LayoutWrapHeight">
+        <item name="android:background">@drawable/edit_text_bg</item>
+        <item name="android:paddingTop">@dimen/size_14</item>
+        <item name="android:paddingBottom">@dimen/size_14</item>
+        <item name="android:paddingLeft">@dimen/size_16</item>
+        <item name="android:paddingRight">@dimen/size_16</item>
+        <item name="android:textSize">@dimen/font_14</item>
+    </style>
+
+
+    <style name="CCVDateHolder" parent="LayoutWrapHeight">
+        <item name="android:layout_marginTop">@dimen/size_16</item>
+    </style>
+
+    <style name="SecureLogo">
+        <item name="android:layout_width">@dimen/size_140</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:layout_gravity">center</item>
+        <item name="android:scaleType">centerInside</item>
+    </style>
+
+
+</resources>
