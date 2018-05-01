@@ -4,6 +4,7 @@
 
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     android:orientation="vertical"
     android:layout_gravity="center"
     android:gravity="center"
@@ -11,121 +12,149 @@
     android:background="@color/transparent_ash"
     android:id="@+id/payment_holder"
     android:focusable="true"
+    android:clipToPadding="false"
+    android:clipChildren="false"
     android:focusableInTouchMode="true"
     android:layout_height="match_parent">
 
 
-    <RelativeLayout
+    <android.support.v7.widget.CardView
         android:layout_width="match_parent"
-        android:id="@+id/parent_view"
-        android:background="@drawable/round_dark_bg"
+        app:cardCornerRadius="@dimen/size_20"
+        app:cardBackgroundColor="@color/white"
+        app:cardElevation="@dimen/size_12"
+        android:clipToPadding="false"
+        android:clipChildren="false"
         android:layout_height="match_parent">
 
-        <ImageView
-            android:id="@+id/header_view"
-            android:src="@drawable/background"
-            android:background="@drawable/round_image_dark_bg"
-            android:scaleType="fitStart"
-            android:layout_gravity="top"
-            android:layout_height="match_parent"
-            android:layout_width="wrap_content" />
-
-        <LinearLayout android:layout_height="match_parent"
-            android:background="@drawable/round_transparent_bg"
+        <RelativeLayout
             android:layout_width="match_parent"
-            android:weightSum="1"
-            android:clipChildren="true"
-            android:clipToPadding="true"
-            android:orientation="vertical">
+            android:id="@+id/parent_view"
+            android:background="@drawable/round_dark_bg"
+            android:layout_height="match_parent">
 
+            <ImageView
+                android:id="@+id/header_view"
+                android:src="@drawable/background"
+                android:background="@drawable/round_image_dark_bg"
+                android:scaleType="fitStart"
+                android:layout_gravity="top"
+                android:layout_height="match_parent"
+                android:layout_width="wrap_content" />
 
-
-            <LinearLayout
+            <LinearLayout android:layout_height="match_parent"
+                android:background="@drawable/round_transparent_bg"
                 android:layout_width="match_parent"
-                android:layout_weight="0.33"
+                android:weightSum="1"
                 android:clipChildren="true"
                 android:clipToPadding="true"
-                android:orientation="horizontal"
-                android:layout_height="0dp">
-
-
-            </LinearLayout>
-
-
-            <LinearLayout
-                android:layout_width="match_parent"
-                android:orientation="vertical"
-                android:layout_weight="0.39"
-                android:gravity="center_vertical"
-                android:layout_marginLeft="@dimen/size_16"
-                android:layout_marginRight="@dimen/size_16"
-                android:id="@+id/card_details_section"
-                android:layout_height="0dp">
-
-                <EditText
-                    style="@style/EditTextStyle"
-                    android:hint="@string/card_number"
-                    android:inputType="number"
-                    android:id="@+id/credit_card_number"/>
+                android:orientation="vertical">
 
                 <LinearLayout
-                    style="@style/CCVDateHolder"
-                    android:orientation="horizontal">
+                    android:layout_width="match_parent"
+                    android:layout_weight="0.33"
+                    android:clipChildren="true"
+                    android:clipToPadding="true"
+                    android:orientation="vertical"
+                    android:gravity="center"
+                    android:layout_height="0dp">
 
-                    <EditText
-                        android:layout_width="0dp"
-                        android:layout_weight="0.5"
-                        style="@style/EditTextStyle"
-                        android:layout_marginRight="5dp"
-                        android:inputType="date"
-                        android:hint="@string/mm_yy"
-                        android:id="@+id/credit_card_expiry"/>
 
-                    <EditText
-                        android:layout_width="0dp"
-                        android:layout_weight="0.5"
-                        style="@style/EditTextStyle"
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:text="@string/current_bill_amount"
+                        android:textSize="@dimen/font_14"
+                        android:textColor="@color/white"
+                        android:layout_marginBottom="@dimen/size_2"
+                        android:layout_height="wrap_content" />
 
-                        android:layout_marginLeft="5dp"
-                        android:hint="@string/cvv"
-                        android:inputType="number"
-
-                        android:id="@+id/credit_card_ccv"/>
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:text="@string/_400"
+                        android:textStyle="bold"
+                        android:textColor="@color/white"
+                        android:textSize="@dimen/font_44"
+                        android:layout_height="wrap_content" />
 
 
                 </LinearLayout>
 
 
-
-            </LinearLayout>
-
-
-            <LinearLayout
-                android:layout_weight="0.28"
-                android:orientation="vertical"
-                android:layout_marginLeft="@dimen/size_16"
-                android:layout_marginRight="@dimen/size_16"
-                android:layout_width="match_parent"
-                android:layout_height="0dp">
-
-                <Button
+                <LinearLayout
                     android:layout_width="match_parent"
-                    style="@style/PaymentButton"
-                    android:text="Pay"
+                    android:orientation="vertical"
+                    android:layout_weight="0.39"
+                    android:gravity="center_vertical"
+                    android:layout_marginLeft="@dimen/size_16"
+                    android:layout_marginRight="@dimen/size_16"
+                    android:id="@+id/card_details_section"
+                    android:layout_height="0dp">
 
-                    android:layout_height="wrap_content" />
+                    <EditText
+                        style="@style/EditTextStyle"
+                        android:hint="@string/card_number"
+                        android:inputType="number"
+                        android:id="@+id/credit_card_number"/>
 
-                <ImageView
-                    style="@style/SecureLogo"
-                    android:src="@drawable/white_paystack_logo"
-                    />
+                    <LinearLayout
+                        style="@style/CCVDateHolder"
+                        android:orientation="horizontal">
+
+                        <EditText
+                            android:layout_width="0dp"
+                            android:layout_weight="0.5"
+                            style="@style/EditTextStyle"
+                            android:layout_marginRight="5dp"
+                            android:inputType="date"
+                            android:hint="@string/mm_yy"
+                            android:id="@+id/credit_card_expiry"/>
+
+                        <EditText
+                            android:layout_width="0dp"
+                            android:layout_weight="0.5"
+                            style="@style/EditTextStyle"
+                            android:layout_marginLeft="5dp"
+                            android:hint="@string/cvv"
+                            android:inputType="number"
+
+                            android:id="@+id/credit_card_ccv"/>
+
+
+                    </LinearLayout>
+
+
+
+                </LinearLayout>
+
+
+                <LinearLayout
+                    android:layout_weight="0.28"
+                    android:orientation="vertical"
+                    android:layout_marginLeft="@dimen/size_16"
+                    android:layout_marginRight="@dimen/size_16"
+                    android:layout_width="match_parent"
+                    android:layout_height="0dp">
+
+                    <Button
+                        android:layout_width="match_parent"
+                        style="@style/PaymentButton"
+                        android:text="Pay"
+
+                        android:layout_height="wrap_content" />
+
+                    <ImageView
+                        style="@style/SecureLogo"
+                        android:src="@drawable/white_paystack_logo"
+                        />
+
+                </LinearLayout>
+
 
             </LinearLayout>
 
+        </RelativeLayout>
 
-        </LinearLayout>
-
-    </RelativeLayout>
+    </android.support.v7.widget.CardView>
 
     </LinearLayout>
 

@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <layer-list xmlns:android="http://schemas.android.com/apk/res/android">
 
-    <item >
+    <item>
         <shape android:shape="rectangle">
             <solid android:color="#6C6C6C" />
             <corners
@@ -9,23 +9,6 @@
             <stroke android:color="@color/black" android:width="@dimen/size_2"/>
         </shape>
     </item>
+   <item android:drawable="@drawable/rect_bg_patch_nine" />
 
-    <item>
-        <shape android:shape="rectangle">
-            <solid android:color="@color/black" />
-            <corners
-                android:radius="@dimen/size_2" />
-            <stroke android:color="@color/black" android:width="@dimen/size_2"/>
-        </shape>
-    </item>
-
-    <!-- White Top color -->
-    <item android:top="3px" android:left="3px">
-        <shape android:shape="rectangle">
-            <solid android:color="@color/B7B7B7" />
-            <corners
-                android:radius="@dimen/size_2" />
-            <stroke android:color="@color/black" android:width="@dimen/size_2"/>
-        </shape>
-    </item>
 </layer-list>

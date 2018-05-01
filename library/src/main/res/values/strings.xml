@@ -3,4 +3,6 @@
     <string name="card_number">Card Number</string>
     <string name="cvv">CVV</string>
     <string name="mm_yy">MM/YY</string>
+    <string name="current_bill_amount">Current Bill Amount</string>
+    <string name="_400">$400</string>
 </resources>
