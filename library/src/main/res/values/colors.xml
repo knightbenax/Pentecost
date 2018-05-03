@@ -2,6 +2,7 @@
 <resources>
     <color name="colorPrimary">#1F2328</color>
     <color name="paymentBackground">#1F232C</color>
+    <color name="paymentWhiteBackground">#F6F6F6</color>
     <color name="colorPrimaryDark">#ffffff</color>
     <color name="colorPayAccent">#4990E2</color>
     <color name="colorAccent">#4990E2</color>

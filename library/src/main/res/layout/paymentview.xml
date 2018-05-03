@@ -30,7 +30,7 @@
         <RelativeLayout
             android:layout_width="match_parent"
             android:id="@+id/parent_view"
-            android:background="@drawable/round_dark_bg"
+            android:background="@drawable/round_white_bg"
             android:layout_height="match_parent">
 
             <ImageView
