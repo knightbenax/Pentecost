@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <declare-styleable name="PaymentView">
+        <attr name="theme" format="reference"/>
+        <attr name="backgroundColor" format="reference"/>
+        <attr name="headerSrc" format="reference"/>
+        <attr name="" format="reference"/>
+    </declare-styleable>
+</resources>

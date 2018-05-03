@@ -26,10 +26,11 @@
     <style name="PaymentButton" parent="android:Widget.Holo.Button.Borderless">
         <item name="android:layout_marginBottom">@dimen/size_14</item>
         <item name="android:layout_marginTop">@dimen/size_8</item>
-        <item name="android:elevation" tools:targetApi="lollipop">3dp</item>
+        <item name="android:elevation" tools:targetApi="lollipop">@dimen/size_4</item>
         <item name="android:translationZ" tools:targetApi="lollipop">0dp</item>
         <item name="android:clipChildren">false</item>
         <item name="android:clipToPadding">false</item>
+
         <item name="android:letterSpacing" tools:targetApi="lollipop">.05</item>
         <item name="android:stateListAnimator" tools:targetApi="lollipop">@null</item>
         <item name="android:minHeight">0dp</item>
