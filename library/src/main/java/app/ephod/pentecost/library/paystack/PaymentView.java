@@ -3,14 +3,22 @@ package app.ephod.pentecost.library.paystack;
 import android.annotation.TargetApi;
 import android.content.Context;
 import android.content.res.TypedArray;
+import android.graphics.Color;
 import android.graphics.drawable.Drawable;
 import android.os.Build;
 import android.support.annotation.Nullable;
+import android.text.Editable;
+import android.text.TextWatcher;
 import android.util.AttributeSet;
+import android.util.Log;
 import android.view.View;
+import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.RelativeLayout;
+import android.widget.TextView;
+
+import java.util.ArrayList;
 
 import app.ephod.pentecost.library.R;
 
@@ -21,13 +29,44 @@ public class PaymentView extends LinearLayout {
     private int styleAttr;
     private View view;
 
-
-
     Drawable headerSrc;
-    String theme;
+    String theme = "0";
     Drawable background;
     String backgroundColor;
+    String billHeader;
+    String billContent;
 
+    EditText creditNumber;
+    EditText creditMonth;
+    EditText creditCCV;
+
+    int formerLength = 0;
+
+    Integer[] imageArray = {R.drawable.visa, R.drawable.mastercard, R.drawable.discover, R.drawable.american_express};
+
+    public void setCreditNumber(String mCreditNumber) {
+        this.creditNumber.setText(mCreditNumber);
+    }
+
+    public void setCreditMonth(String mCreditMonth) {
+        this.creditMonth.setText(mCreditMonth);
+    }
+
+    public void setCreditCCV(String mCreditCCV) {
+        this.creditCCV.setText(mCreditCCV);
+    }
+
+    public String getCreditNumber() {
+        return creditNumber.getText().toString();
+    }
+
+    public String getCreditMonth() {
+        return creditMonth.getText().toString();
+    }
+
+    public String getCreditCCV() {
+        return creditCCV.getText().toString();
+    }
 
     public PaymentView(Context context) {
         super(context);
@@ -67,6 +106,14 @@ public class PaymentView extends LinearLayout {
         this.theme = theme;
     }
 
+    public void setBillHeader(String billHeader) {
+        this.billHeader = billHeader;
+    }
+
+    public void setBillContent(String billContent) {
+        this.billContent = billContent;
+    }
+
     public void setPentecostBackground(Drawable background) {
         this.background = background;
     }
@@ -75,11 +122,28 @@ public class PaymentView extends LinearLayout {
         this.backgroundColor = backgroundColor;
     }
 
-    public void initView(Context context){
+    private void initView(Context context){
+
+        //inflate layout
         View view = inflate(context, R.layout.paymentview, this);
-        //view.findViewById(R.id.hea)
+
+        //init views
         ImageView headerView = view.findViewById(R.id.header_view);
         RelativeLayout parentView = view.findViewById(R.id.parent_view);
+        EditText creditEdit = view.findViewById(R.id.credit_card_number);
+        EditText ccvEdit = view.findViewById(R.id.credit_card_ccv);
+        EditText dateEdit = view.findViewById(R.id.credit_card_expiry);
+        ImageView secureLogo = view.findViewById(R.id.secure_logo);
+
+        LinearLayout secondParentView = view.findViewById(R.id.second_parent);
+
+        TextView billHeaderText = view.findViewById(R.id.bill_header);
+        TextView billHeaderContent = view.findViewById(R.id.bill_content);
+
+        creditNumber = findViewById(R.id.credit_card_number);
+        creditMonth = findViewById(R.id.credit_card_expiry);
+
+        setTextWatchers();
 
         TypedArray arr = mContext.obtainStyledAttributes(attributeSet, R.styleable.PaymentView, styleAttr, 0);
 
@@ -88,11 +152,158 @@ public class PaymentView extends LinearLayout {
             parentView.setClipToOutline(true);
         }
 
-        theme = arr.getString(R.styleable.PaymentView_theme);
-        background = arr.getDrawable(R.styleable.PaymentView_background);
-        backgroundColor = arr.getString(R.styleable.PaymentView_backgroundColor);
-        headerSrc = arr.getDrawable(R.styleable.PaymentView_headerSrc);
+        theme = arr.getString(R.styleable.PaymentView_pentecostTheme);
+        background = arr.getDrawable(R.styleable.PaymentView_pentecostBackgroundDrawable);
+        backgroundColor = arr.getString(R.styleable.PaymentView_pentecostBackgroundColor);
+        headerSrc = arr.getDrawable(R.styleable.PaymentView_pentecostHeaderSrc);
+
+        if (theme == null){
+            theme = "0";
+        }
 
         arr.recycle();
+
+        if (theme.equals("0")){
+            parentView.setBackgroundResource(R.drawable.round_dark_bg);
+            creditEdit.setBackgroundResource(R.drawable.edit_text_bg);
+            ccvEdit.setBackgroundResource(R.drawable.edit_text_bg);
+            dateEdit.setBackgroundResource(R.drawable.edit_text_bg);
+            secureLogo.setImageResource(R.drawable.white_paystack_logo);
+            billHeaderText.setTextColor(getResources().getColor(R.color.white));
+            billHeaderContent.setTextColor(getResources().getColor(R.color.white));
+        } else if (theme.equals("1")) {
+            parentView.setBackgroundResource(R.drawable.round_white_bg);
+            creditEdit.setBackgroundResource(R.drawable.edit_text_white_bg);
+            ccvEdit.setBackgroundResource(R.drawable.edit_text_white_bg);
+            dateEdit.setBackgroundResource(R.drawable.edit_text_white_bg);
+            secureLogo.setImageResource(R.drawable.blue_paystack_logo);
+            billHeaderText.setTextColor(getResources().getColor(R.color.black));
+            billHeaderContent.setTextColor(getResources().getColor(R.color.black));
+        }
+
+        Log.e("TAG", theme);
+
+        if (background != null){
+            secondParentView.setBackgroundResource(0);
+            parentView.setBackground(background);
+        }
+
+        if (backgroundColor != null){
+
+            int bgColor = Color.parseColor(backgroundColor);
+            secondParentView.setBackgroundResource(0);
+            parentView.setBackgroundColor(bgColor);
+        }
+    }
+
+    public static ArrayList<String> listOfPattern()
+    {
+        ArrayList<String> listOfPattern=new ArrayList<String>();
+
+        String ptVisa = "^4[0-9]$";
+
+        listOfPattern.add(ptVisa);
+
+        String ptMasterCard = "^5[1-5]$";
+
+        listOfPattern.add(ptMasterCard);
+
+        String ptDiscover = "^6(?:011|5[0-9]{2})$";
+
+        listOfPattern.add(ptDiscover);
+
+        String ptAmeExp = "^3[47]$";
+
+        listOfPattern.add(ptAmeExp);
+
+        return listOfPattern;
+    }
+
+
+
+    private void setTextWatchers() {
+
+        creditNumber.addTextChangedListener(new TextWatcher() {
+            @Override
+            public void beforeTextChanged(CharSequence charSequence, int j, int j1, int j2) {
+
+                String cardNumber = charSequence.toString();
+
+                if (cardNumber.length() > 2){
+
+                    for (int i = 0; i <  listOfPattern().size(); i++){
+
+                        if (cardNumber.substring(0, 2).matches(listOfPattern().get(i))){
+
+                            creditNumber.setCompoundDrawablesWithIntrinsicBounds(0, 0,  imageArray[i], 0);
+                            //break;
+
+                        } else {
+                            //creditNumber.setCompoundDrawablesWithIntrinsicBounds(0, 0,  R.drawable.visa, 0);
+                            //break;
+
+                        }
+
+                    }
+
+                }
+
+            }
+
+            @Override
+            public void onTextChanged(CharSequence charSequence, int i, int i1, int i2) {
+
+            }
+
+            @Override
+            public void afterTextChanged(Editable editable) {
+
+                String cardNumber = creditNumber.getText().toString();
+
+                if (!cardNumber.equalsIgnoreCase("")){
+
+                    for (int i = 0; i < listOfPattern().size(); i++){
+
+                        if (cardNumber.matches(listOfPattern().get(i))){
+                            creditNumber.setCompoundDrawablesWithIntrinsicBounds(0, 0,  imageArray[i], 0);
+                        }
+
+                    }
+
+                } else {
+
+                    creditNumber.setCompoundDrawablesWithIntrinsicBounds(0, 0,  0, 0);
+
+                }
+
+            }
+        });
+
+        creditMonth.addTextChangedListener(new TextWatcher() {
+            @Override
+            public void beforeTextChanged(CharSequence charSequence, int i, int i1, int i2) {
+                formerLength = charSequence.length();
+            }
+
+            @Override
+            public void onTextChanged(CharSequence charSequence, int i, int i1, int i2) {
+            }
+
+            @Override
+            public void afterTextChanged(Editable editable) {
+                if (editable.length() > formerLength){ //User is adding text
+                    if(editable.length() == 2){
+                        editable.append("/");
+                    }
+                } else {
+                    if(editable.length() == 2){
+                        editable.delete(editable.length() - 1, editable.length());
+                    }
+                }
+
+            }
+        });
+
+
     }
 }

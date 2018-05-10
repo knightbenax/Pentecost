@@ -5,4 +5,5 @@
     <string name="mm_yy">MM/YY</string>
     <string name="current_bill_amount">Current Bill Amount</string>
     <string name="_400">$400</string>
+    <string name="pay">Pay</string>
 </resources>

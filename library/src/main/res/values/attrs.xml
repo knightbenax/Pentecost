@@ -1,9 +1,12 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
     <declare-styleable name="PaymentView">
-        <attr name="theme" format="reference"/>
-        <attr name="backgroundColor" format="reference"/>
-        <attr name="background" format="reference"/>
-        <attr name="headerSrc" format="reference"/>
+        <attr name="pentecostTheme" format="enum">
+            <enum name="black" value="0" />
+            <enum name="white" value="1" />
+        </attr>
+        <attr name="pentecostBackgroundColor" format="reference|color"/>
+        <attr name="pentecostBackgroundDrawable" format="reference"/>
+        <attr name="pentecostHeaderSrc" format="reference"/>
     </declare-styleable>
 </resources>

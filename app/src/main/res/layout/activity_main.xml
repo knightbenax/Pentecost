@@ -15,8 +15,12 @@
         app:layout_constraintRight_toRightOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
+    <!--app:pentecostBackgroundDrawable="@drawable/payment_button"-->
+    <!--app:pentecostBackgroundColor="@color/colorPrimaryDark"-->
+
 <app.ephod.pentecost.library.paystack.PaymentView
     android:layout_width="match_parent"
+    app:pentecostTheme="black"
     android:layout_height="match_parent">
 
 </app.ephod.pentecost.library.paystack.PaymentView>

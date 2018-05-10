@@ -30,7 +30,9 @@
         <RelativeLayout
             android:layout_width="match_parent"
             android:id="@+id/parent_view"
-            android:background="@drawable/round_white_bg"
+            android:clipToPadding="false"
+            android:clipChildren="false"
+            android:background="@drawable/round_dark_bg"
             android:layout_height="match_parent">
 
             <ImageView
@@ -44,17 +46,18 @@
 
             <LinearLayout android:layout_height="match_parent"
                 android:background="@drawable/round_transparent_bg"
+                android:id="@+id/second_parent"
                 android:layout_width="match_parent"
                 android:weightSum="1"
-                android:clipChildren="true"
-                android:clipToPadding="true"
+                android:clipToPadding="false"
+                android:clipChildren="false"
                 android:orientation="vertical">
 
                 <LinearLayout
                     android:layout_width="match_parent"
                     android:layout_weight="0.33"
-                    android:clipChildren="true"
-                    android:clipToPadding="true"
+                    android:clipToPadding="false"
+                    android:clipChildren="false"
                     android:orientation="vertical"
                     android:gravity="center"
                     android:layout_height="0dp">
@@ -64,6 +67,7 @@
                         android:layout_width="wrap_content"
                         android:text="@string/current_bill_amount"
                         android:textSize="@dimen/font_14"
+                        android:id="@+id/bill_header"
                         android:textColor="@color/white"
                         android:layout_marginBottom="@dimen/size_2"
                         android:layout_height="wrap_content" />
@@ -72,6 +76,7 @@
                         android:layout_width="wrap_content"
                         android:text="@string/_400"
                         android:textStyle="bold"
+                        android:id="@+id/bill_content"
                         android:textColor="@color/white"
                         android:textSize="@dimen/font_44"
                         android:layout_height="wrap_content" />
@@ -105,6 +110,7 @@
                             android:layout_weight="0.5"
                             style="@style/EditTextStyle"
                             android:layout_marginRight="5dp"
+                            android:maxLength="5"
                             android:inputType="date"
                             android:hint="@string/mm_yy"
                             android:id="@+id/credit_card_expiry"/>
@@ -112,6 +118,7 @@
                         <EditText
                             android:layout_width="0dp"
                             android:layout_weight="0.5"
+                            android:maxLength="4"
                             style="@style/EditTextStyle"
                             android:layout_marginLeft="5dp"
                             android:hint="@string/cvv"
@@ -133,17 +140,19 @@
                     android:layout_marginLeft="@dimen/size_16"
                     android:layout_marginRight="@dimen/size_16"
                     android:layout_width="match_parent"
+                    android:clipToPadding="false"
+                    android:clipChildren="false"
                     android:layout_height="0dp">
 
                     <Button
                         android:layout_width="match_parent"
                         style="@style/PaymentButton"
-                        android:text="Pay"
-
+                        android:text="@string/pay"
                         android:layout_height="wrap_content" />
 
                     <ImageView
                         style="@style/SecureLogo"
+                        android:id="@+id/secure_logo"
                         android:src="@drawable/white_paystack_logo"
                         />
 
