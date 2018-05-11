@@ -20,7 +20,8 @@
 
 <app.ephod.pentecost.library.paystack.PaymentView
     android:layout_width="match_parent"
-    app:pentecostTheme="black"
+    app:pentecostTheme="white"
+    android:id="@+id/paymentView"
     android:layout_height="match_parent">
 
 </app.ephod.pentecost.library.paystack.PaymentView>
