@@ -4,19 +4,26 @@ import android.annotation.TargetApi;
 import android.content.Context;
 import android.content.res.TypedArray;
 import android.graphics.Color;
+import android.graphics.PorterDuff;
 import android.graphics.drawable.Drawable;
 import android.os.Build;
 import android.support.annotation.Nullable;
+import android.support.v4.content.ContextCompat;
+import android.support.v4.graphics.drawable.DrawableCompat;
 import android.text.Editable;
 import android.text.TextWatcher;
 import android.util.AttributeSet;
 import android.util.Log;
 import android.view.View;
+import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
+import android.widget.ProgressBar;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
+
+import com.dd.morphingbutton.impl.IndeterminateProgressButton;
 
 import java.util.ArrayList;
 
@@ -40,7 +47,17 @@ public class PaymentView extends LinearLayout {
     EditText creditMonth;
     EditText creditCCV;
 
+
+
+    Button payButton;
+    ProgressBar progressBar;
+
+
     int formerLength = 0;
+
+    public Button getPayButton() {
+        return payButton;
+    }
 
     Integer[] imageArray = {R.drawable.visa, R.drawable.mastercard, R.drawable.discover, R.drawable.american_express};
 
@@ -122,6 +139,41 @@ public class PaymentView extends LinearLayout {
         this.backgroundColor = backgroundColor;
     }
 
+    public void showLoader(){
+        progressBar.setVisibility(VISIBLE);
+        payButton.setVisibility(INVISIBLE);
+        payButton.setEnabled(false);
+
+        creditNumber.setEnabled(false);
+        creditMonth.setEnabled(false);
+        creditCCV.setEnabled(false);
+        //payButton.blockTouch();
+        //payButton.morphToProgress(R.color.white, R.dimen.size_2, width, R.dimen.size_14, 10, R.color.colorAccent);
+    }
+
+    public void hideLoader(){
+        //payButton.unblockTouch();
+        progressBar.setVisibility(GONE);
+        payButton.setVisibility(VISIBLE);
+        payButton.setEnabled(true);
+
+        creditNumber.setEnabled(true);
+        creditMonth.setEnabled(true);
+        creditCCV.setEnabled(true);
+    }
+
+    private void tintProgressBar(ProgressBar mProgressBar){
+        // fixes pre-Lollipop progressBar indeterminateDrawable tinting
+        if (Build.VERSION.SDK_INT < Build.VERSION_CODES.LOLLIPOP) {
+
+            Drawable wrapDrawable = DrawableCompat.wrap(mProgressBar.getIndeterminateDrawable());
+            DrawableCompat.setTint(wrapDrawable, ContextCompat.getColor(getContext(), R.color.colorPayAccent));
+            mProgressBar.setIndeterminateDrawable(DrawableCompat.unwrap(wrapDrawable));
+        } else {
+            mProgressBar.getIndeterminateDrawable().setColorFilter(ContextCompat.getColor(getContext(), R.color.colorPayAccent), PorterDuff.Mode.SRC_IN);
+        }
+    }
+
     private void initView(Context context){
 
         //inflate layout
@@ -130,9 +182,9 @@ public class PaymentView extends LinearLayout {
         //init views
         ImageView headerView = view.findViewById(R.id.header_view);
         RelativeLayout parentView = view.findViewById(R.id.parent_view);
-        EditText creditEdit = view.findViewById(R.id.credit_card_number);
-        EditText ccvEdit = view.findViewById(R.id.credit_card_ccv);
-        EditText dateEdit = view.findViewById(R.id.credit_card_expiry);
+        //EditText creditEdit = view.findViewById(R.id.credit_card_number);
+        //EditText ccvEdit = view.findViewById(R.id.credit_card_ccv);
+        //EditText dateEdit = view.findViewById(R.id.credit_card_expiry);
         ImageView secureLogo = view.findViewById(R.id.secure_logo);
 
         LinearLayout secondParentView = view.findViewById(R.id.second_parent);
@@ -142,8 +194,16 @@ public class PaymentView extends LinearLayout {
 
         creditNumber = findViewById(R.id.credit_card_number);
         creditMonth = findViewById(R.id.credit_card_expiry);
+        creditCCV = findViewById(R.id.credit_card_ccv);
 
+        payButton = findViewById(R.id.pay_button);
+        progressBar = findViewById(R.id.progress_bar);
+
+        tintProgressBar(progressBar);
         setTextWatchers();
+
+        //we are setting the background resource here again because MorphButton overrides what is set in the xml
+        payButton.setBackgroundResource(R.drawable.payment_button);
 
         TypedArray arr = mContext.obtainStyledAttributes(attributeSet, R.styleable.PaymentView, styleAttr, 0);
 
@@ -165,17 +225,17 @@ public class PaymentView extends LinearLayout {
 
         if (theme.equals("0")){
             parentView.setBackgroundResource(R.drawable.round_dark_bg);
-            creditEdit.setBackgroundResource(R.drawable.edit_text_bg);
-            ccvEdit.setBackgroundResource(R.drawable.edit_text_bg);
-            dateEdit.setBackgroundResource(R.drawable.edit_text_bg);
+            creditNumber.setBackgroundResource(R.drawable.edit_text_bg);
+            creditCCV.setBackgroundResource(R.drawable.edit_text_bg);
+            creditMonth.setBackgroundResource(R.drawable.edit_text_bg);
             secureLogo.setImageResource(R.drawable.white_paystack_logo);
             billHeaderText.setTextColor(getResources().getColor(R.color.white));
             billHeaderContent.setTextColor(getResources().getColor(R.color.white));
         } else if (theme.equals("1")) {
             parentView.setBackgroundResource(R.drawable.round_white_bg);
-            creditEdit.setBackgroundResource(R.drawable.edit_text_white_bg);
-            ccvEdit.setBackgroundResource(R.drawable.edit_text_white_bg);
-            dateEdit.setBackgroundResource(R.drawable.edit_text_white_bg);
+            creditNumber.setBackgroundResource(R.drawable.edit_text_white_bg);
+            creditCCV.setBackgroundResource(R.drawable.edit_text_white_bg);
+            creditMonth.setBackgroundResource(R.drawable.edit_text_white_bg);
             secureLogo.setImageResource(R.drawable.blue_paystack_logo);
             billHeaderText.setTextColor(getResources().getColor(R.color.black));
             billHeaderContent.setTextColor(getResources().getColor(R.color.black));

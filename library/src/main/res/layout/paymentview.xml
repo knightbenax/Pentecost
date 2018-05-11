@@ -3,6 +3,7 @@
 <!--<layout xmlns:android="http://schemas.android.com/apk/res/android">-->
 
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:orientation="vertical"
@@ -144,11 +145,33 @@
                     android:clipChildren="false"
                     android:layout_height="0dp">
 
-                    <Button
-                        android:layout_width="match_parent"
-                        style="@style/PaymentButton"
-                        android:text="@string/pay"
-                        android:layout_height="wrap_content" />
+                   <RelativeLayout
+                       android:layout_width="match_parent"
+                       android:layout_marginBottom="@dimen/font_14"
+                       android:layout_height="wrap_content">
+
+                       <ProgressBar
+                           android:layout_width="match_parent"
+                           android:indeterminateOnly="true"
+                           android:layout_centerInParent="true"
+                           android:id="@+id/progress_bar"
+                           style="@style/Widget.AppCompat.ProgressBar.Horizontal"
+                           android:progressTint="@color/colorPayAccent"
+                           android:progressBackgroundTint="@color/colorPayAccentDark"
+                           android:progressTintMode="screen"
+                           android:layout_height="@dimen/size_14"
+                           tools:targetApi="lollipop" />
+
+                       <Button
+                           android:layout_width="match_parent"
+                           style="@style/PaymentButton"
+                           android:id="@+id/pay_button"
+                           android:layout_marginTop="0dp"
+                           android:layout_marginBottom="0dp"
+                           android:text="@string/pay"
+                           android:layout_height="wrap_content" />
+
+                   </RelativeLayout>
 
                     <ImageView
                         style="@style/SecureLogo"
