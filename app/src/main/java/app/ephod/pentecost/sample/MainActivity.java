@@ -27,5 +27,7 @@ public class MainActivity extends AppCompatActivity {
                 paymentView.showLoader();
             }
         });
+
+        paymentView.setBillContent("₦5000");
     }
 }
