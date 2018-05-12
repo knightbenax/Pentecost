@@ -23,10 +23,9 @@ import android.widget.ProgressBar;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
 
-
 import java.util.ArrayList;
 
-import app.ephod.pentecost.library.R;
+import app.ephod.pentecost.pentecost.R;
 
 public class PaymentView extends LinearLayout {
 
