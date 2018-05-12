@@ -23,7 +23,6 @@ import android.widget.ProgressBar;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
 
-import com.dd.morphingbutton.impl.IndeterminateProgressButton;
 
 import java.util.ArrayList;
 
