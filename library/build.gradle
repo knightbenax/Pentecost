@@ -24,6 +24,25 @@ android {
 
 }
 
+ext{
+    bintrayRepo = 'Pentecost' // your repo name
+    bintrayName = 'library' // has to be same as your library module name
+    publishedGroupId = 'app.ephod.pentecost' // your module package name
+    libraryName = 'library'
+    artifact = 'library' // has to be same as your library module name
+    libraryDescription = 'Payment Android UI Library for PayStack'
+    siteUrl = 'https://github.com/knightbenax/Pentecost'
+    gitUrl = 'https://github.com/knightbenax/Pentecost.git'
+    libraryVersion = '1.0'
+    developerId = 'knightbenax'
+    developerName = 'Knightbenax'
+    developerEmail = 'knightbenax@gmail.com'
+    licenseName = 'The Apache Software License, Version 2.0'
+    licenseUrl = 'http://www.apache.org/licenses/LICENSE-2.0.txt'
+    allLicenses = ["Apache-2.0"]
+}
+
+
 dependencies {
     implementation fileTree(dir: 'libs', include: ['*.jar'])
 
@@ -37,3 +56,7 @@ dependencies {
     implementation 'com.github.dmytrodanylyk:android-morphing-button:98a4986e56' // commit hash'
 
 }
+
+
+apply from: 'https://raw.githubusercontent.com/knightbenax/jcenter/master/installv.gradle'
+apply from: 'https://raw.githubusercontent.com/knightbenax/jcenter/master/bintrayv.gradle'
