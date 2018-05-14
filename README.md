@@ -3,18 +3,18 @@
 [![Knightbenax Approved](/knightbenax-approved-blue.svg)](https://twitter.com/knightbenax) [![Platform](/platform.svg)]()
 
 
-Pentecost gives you quick customizable PaymentView to use with PayStack. Simply show and hide as needed. 
+Pentecost gives you a quick customizable PaymentView to use with PayStack. Simply show and hide as needed. 
 
 
 ![Screenshot](/one@2x.png?raw=true)
 
 
-##Why PayStack?
+## Why PayStack?
 
 Why not PayStack? PayStack is currently one of the easiest and fastest way to receive payments. Their Android SDK gets you set up in a few minutes.
 
 
-##Installation
+## Installation
 
 Add to your root build.gradle at the end of repositories 
 
@@ -29,7 +29,7 @@ allprojects {
 ```
  
 
-###Maven
+### Maven
 
 ```
 <dependency> 
@@ -41,16 +41,16 @@ allprojects {
 ``` 
 
 
-###Gradle
+### Gradle
 
 ```
 compile 'app.ephod.pentecost:pentecost:1.0'
 ```
 
 
-##Usage
+## Usage
 
-###Define in XML
+### Define in XML
 
 ```
 <app.ephod.pentecost.pentecost.paystack.PaymentView
@@ -59,23 +59,23 @@ compile 'app.ephod.pentecost:pentecost:1.0'
     android:layout_height="match_parent">
 ```
 
-###Set Theme
+### Set Theme
 
 ```
     app:pentecostTheme="black|white"
 ```
 
-###Set Background Drawable
+### Set Background Drawable
 ```
     app:pentecostBackground=""
 ```
 
-###Set Background Color
+### Set Background Color
 ```
     app:pentecostBackgroundColor=""
 ```
 
-###Set Header Image Src
+### Set Header Image Src
 ```
     app:pentecostHeaderSrc=""
 ```
