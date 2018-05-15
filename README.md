@@ -35,7 +35,7 @@ allprojects {
 <dependency> 
     <groupId>app.ephod.pentecost</groupId> 
     <artifactId>pentecost</artifactId> 
-    <version>1.0</version> 
+    <version>1.0.1</version> 
     <type>pom</type> 
 </dependency>
 ``` 
@@ -44,7 +44,7 @@ allprojects {
 ### Gradle
 
 ```
-compile 'app.ephod.pentecost:pentecost:1.0'
+compile 'app.ephod.pentecost:pentecost:1.0.1'
 ```
 
 
