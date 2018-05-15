@@ -48,9 +48,9 @@ compile 'app.ephod.pentecost:pentecost:1.0'
 ```
 
 
-## Usage
+## Usage - XML
 
-### Define in XML
+#### Define in XML
 
 ```
 <app.ephod.pentecost.pentecost.paystack.PaymentView
@@ -59,26 +59,115 @@ compile 'app.ephod.pentecost:pentecost:1.0'
     android:layout_height="match_parent">
 ```
 
-### Set Theme
-
+#### Set Theme
 ```
     app:pentecostTheme="black|white"
 ```
 
-### Set Background Drawable
+#### Set Background Drawable
 ```
     app:pentecostBackground=""
 ```
 
-### Set Background Color
+#### Set Background Color
 ```
     app:pentecostBackgroundColor=""
 ```
 
-### Set Header Image Src
+#### Set Header Image Src
 ```
     app:pentecostHeaderSrc=""
 ```
+
+## Usage - Code Behind
+#### Set Theme
+```
+    paymentView.setPentecostTheme("black|white");
+```
+
+#### Set Background Drawable
+```
+    paymentView.setPentecostBackground(drawable);
+```
+
+#### Set Background Color
+```
+    paymentView.setPentecostBackgroundColor(color);
+```
+
+#### Set Billable Header
+
+This is line that describes the payment to the user. Can leave blank
+
+```
+    paymentView.setBillHeader('')
+```
+
+#### Set Billable Amount
+
+This shows the amount the user is paying, including the currency. This would be different from the value you would be sending to PayStack, which is in kobo
+
+```
+    paymentView.setBillContent('')
+```
+
+#### Set Card Number
+```
+    paymentView.setCardNumber('')
+```
+
+#### Set CardCVV
+```
+    paymentView.setCardCVV('')
+```
+
+#### Set Card Expiry Date
+```
+    paymentView.setCardExpDate('')
+```
+
+#### Get Card Number
+```
+    paymentView.getCardNumber('')
+```
+
+#### Get CardCVV
+```
+    paymentView.getCardCVV('')
+```
+
+#### Get Card Expiry Date
+```
+    paymentView.getCardExpDate('')
+```
+
+#### Put PaymentView in loading mode
+
+This can be used when the transaction is being made to PayStack or to indicate an initiated action is in progress 
+```
+    paymentView.showLoader();
+```
+
+#### Remove PaymentView from loading mode
+ 
+```
+    paymentView.hideLoader();
+```
+
+#### Get PaymentView Pay Button
+
+This returns a Button. You can add a click listener to it and process events.
+ 
+```
+    paymentView.getPayButton()
+```
+
+## Using this library?
+
+If you are using this library, you can give me a quick shoutout on Twitter with a link to your app and I would showcase here. 
+
+[@knightbenax](https://twitter.com/knightbenax)
+
 
 
 

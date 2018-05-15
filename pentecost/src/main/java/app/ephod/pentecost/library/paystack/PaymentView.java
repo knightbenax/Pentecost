@@ -59,27 +59,27 @@ public class PaymentView extends LinearLayout {
 
     Integer[] imageArray = {R.drawable.visa, R.drawable.mastercard, R.drawable.discover, R.drawable.american_express};
 
-    public void setCreditNumber(String mCreditNumber) {
+    public void setCardNumber(String mCreditNumber) {
         this.creditNumber.setText(mCreditNumber);
     }
 
-    public void setCreditMonth(String mCreditMonth) {
+    public void setCardExpDate(String mCreditMonth) {
         this.creditMonth.setText(mCreditMonth);
     }
 
-    public void setCreditCCV(String mCreditCCV) {
+    public void setCardCCV(String mCreditCCV) {
         this.creditCCV.setText(mCreditCCV);
     }
 
-    public String getCreditNumber() {
+    public String getCardNumber() {
         return creditNumber.getText().toString();
     }
 
-    public String getCreditMonth() {
+    public String getCardExpDate() {
         return creditMonth.getText().toString();
     }
 
-    public String getCreditCCV() {
+    public String getCardCCV() {
         return creditCCV.getText().toString();
     }
 
@@ -133,7 +133,7 @@ public class PaymentView extends LinearLayout {
         this.background = background;
     }
 
-    public void setBackgroundColor(String backgroundColor) {
+    public void setPentecostBackgroundColor(String backgroundColor) {
         this.backgroundColor = backgroundColor;
     }
 
