@@ -15,12 +15,15 @@ import android.text.TextWatcher;
 import android.util.AttributeSet;
 import android.util.Log;
 import android.view.View;
+import android.widget.AdapterView;
+import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.ProgressBar;
 import android.widget.RelativeLayout;
+import android.widget.Spinner;
 import android.widget.TextView;
 
 import java.util.ArrayList;
@@ -275,6 +278,8 @@ public class PaymentView extends LinearLayout {
                 }
             }
         });
+
+        initSpinner();
     }
 
 
@@ -305,8 +310,72 @@ public class PaymentView extends LinearLayout {
         return listOfPattern;
     }
 
+    private String[] getBankSpinner() {
+        return arraySpinner;
+    }
+
+    public void setBanksSpinner(String[] arraySpinner) {
+        int length = arraySpinner.length + 1;
+
+        String[] tempSpinner = new String[length];
+
+        tempSpinner[0] = "Select Bank";
+
+        System.arraycopy(arraySpinner, 0, tempSpinner, 1, arraySpinner.length);
+
+        this.arraySpinner = tempSpinner;
+
+        Spinner s = findViewById(R.id.bank_name);
+        ArrayAdapter<String> adapter = new ArrayAdapter<>(getContext(), R.layout.layout_spinner_item, this.arraySpinner);
+        adapter.setDropDownViewResource(R.layout.layout_spinner_item_drop);
+        s.setAdapter(adapter);
+
+        s.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+            @Override
+            public void onItemSelected(AdapterView<?> adapterView, View view, int position, long id) {
+                TextView tv = (TextView) view;
+
+                if (position == 0){
+                    tv.setTextColor(getResources().getColor(R.color.spinner_hint));
+                } else {
+                    tv.setTextColor(getResources().getColor(R.color.black));
+                }
+            }
+
+            @Override
+            public void onNothingSelected(AdapterView<?> adapterView) {
+
+            }
+        });
+    }
+
+    String[] arraySpinner;
 
     private void initSpinner(){
+        arraySpinner = new String[]{};
+
+        Spinner s = findViewById(R.id.bank_name);
+        ArrayAdapter<String> adapter = new ArrayAdapter<>(getContext(), R.layout.layout_spinner_item, arraySpinner);
+        adapter.setDropDownViewResource(R.layout.layout_spinner_item_drop);
+        s.setAdapter(adapter);
+
+        s.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+            @Override
+            public void onItemSelected(AdapterView<?> adapterView, View view, int position, long id) {
+                TextView tv = (TextView) view;
+
+                if (position == 0){
+                    tv.setTextColor(getResources().getColor(R.color.spinner_hint));
+                } else {
+                    tv.setTextColor(getResources().getColor(R.color.black));
+                }
+            }
+
+            @Override
+            public void onNothingSelected(AdapterView<?> adapterView) {
+
+            }
+        });
 
     }
 

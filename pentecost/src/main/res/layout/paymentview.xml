@@ -47,7 +47,8 @@
                     android:scaleType="fitStart"
                     android:layout_gravity="top"
                     android:layout_height="match_parent"
-                    android:layout_width="wrap_content" />
+                    android:layout_width="wrap_content"
+                    android:contentDescription="TODO" />
 
                 <LinearLayout android:layout_height="wrap_content"
                     android:background="@drawable/round_transparent_bg"
@@ -103,7 +104,9 @@
                             android:textColor="@color/white"
                             android:layout_marginLeft="@dimen/size_24"
                             android:layout_marginRight="@dimen/size_10"
-                            android:layout_height="wrap_content" />
+                            android:layout_height="wrap_content"
+                            android:layout_marginStart="@dimen/size_24"
+                            android:layout_marginEnd="@dimen/size_10" />
 
                         <io.ghyeok.stickyswitch.widget.StickySwitch
                             android:id="@+id/sticky_switch"
@@ -122,7 +125,7 @@
                             app:ss_switchColor="@color/colorPayAccent"
                             app:ss_textColor="@color/white"
                             app:ss_textSize="@dimen/font_14"
-                            app:ss_animationType="curved"/>
+                            app:ss_animationType="line"/>
 
                         <TextView
                             android:layout_width="wrap_content"
@@ -163,7 +166,8 @@
                                 android:maxLength="5"
                                 android:inputType="date"
                                 android:hint="@string/mm_yy"
-                                android:id="@+id/credit_card_expiry"/>
+                                android:id="@+id/credit_card_expiry"
+                                android:layout_marginEnd="5dp" />
 
                             <EditText
                                 android:layout_width="0dp"
@@ -251,7 +255,7 @@
                             style="@style/SecureLogo"
                             android:id="@+id/secure_logo"
                             android:src="@drawable/white_paystack_logo"
-                            />
+                            android:contentDescription="TODO" />
 
                     </LinearLayout>
 

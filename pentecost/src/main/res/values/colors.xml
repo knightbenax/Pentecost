@@ -12,6 +12,7 @@
     <color name="B7B7B7">#B7B7B7</color>
     <color name="red">#ff0000</color>
     <color name="ash">#aaaaaa</color>
+    <color name="spinner_hint">#5e5e5e</color>
     <color name="transparent_ash">#80000000</color>
     <color name="transparent">#00FFFFFF</color>
     <color name="transparent_black">#B3000000</color>
