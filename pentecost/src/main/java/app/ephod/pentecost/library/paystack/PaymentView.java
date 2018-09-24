@@ -26,6 +26,7 @@ import android.widget.TextView;
 import java.util.ArrayList;
 
 import app.ephod.pentecost.pentecost.R;
+import io.ghyeok.stickyswitch.widget.StickySwitch;
 
 public class PaymentView extends LinearLayout {
 
@@ -46,6 +47,8 @@ public class PaymentView extends LinearLayout {
     EditText creditCCV;
 
 
+    LinearLayout cardHolder, bankHolder;
+    StickySwitch stickySwitch;
 
     Button payButton;
     ProgressBar progressBar;
@@ -194,6 +197,9 @@ public class PaymentView extends LinearLayout {
         creditMonth = findViewById(R.id.credit_card_expiry);
         creditCCV = findViewById(R.id.credit_card_ccv);
 
+        cardHolder = findViewById(R.id.card_details_section);
+        bankHolder = findViewById(R.id.bank_details_section);
+
         payButton = findViewById(R.id.pay_button);
         progressBar = findViewById(R.id.progress_bar);
 
@@ -252,6 +258,28 @@ public class PaymentView extends LinearLayout {
             secondParentView.setBackgroundResource(0);
             parentView.setBackgroundColor(bgColor);
         }
+
+        stickySwitch = view.findViewById(R.id.sticky_switch);
+        stickySwitch.setOnSelectedChangeListener(new StickySwitch.OnSelectedChangeListener() {
+            @Override
+            public void onSelectedChange(StickySwitch.Direction direction, String s) {
+                switch (direction){
+                    case LEFT:
+                        setVisibility(bankHolder, View.GONE);
+                        setVisibility(cardHolder, View.VISIBLE);
+                        break;
+                    case RIGHT:
+                        setVisibility(bankHolder, View.VISIBLE);
+                        setVisibility(cardHolder, View.GONE);
+                        break;
+                }
+            }
+        });
+    }
+
+
+    private void setVisibility(View view, int visibility){
+        view.setVisibility(visibility);
     }
 
     public static ArrayList<String> listOfPattern()
@@ -278,6 +306,9 @@ public class PaymentView extends LinearLayout {
     }
 
 
+    private void initSpinner(){
+
+    }
 
     private void setTextWatchers() {
 
