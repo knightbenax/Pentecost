@@ -7,4 +7,7 @@
     <string name="_400">₦400</string>
     <string name="four_dollar">$400</string>
     <string name="pay">Pay</string>
+    <string name="account">Account</string>
+    <string name="card">Card</string>
+    <string name="account_number">Account Number</string>
 </resources>
