@@ -7,7 +7,6 @@ import android.graphics.Color;
 import android.graphics.PorterDuff;
 import android.graphics.drawable.Drawable;
 import android.os.Build;
-import android.support.annotation.Nullable;
 import android.support.v4.content.ContextCompat;
 import android.support.v4.graphics.drawable.DrawableCompat;
 import android.text.Editable;
@@ -25,9 +24,7 @@ import android.widget.ProgressBar;
 import android.widget.RelativeLayout;
 import android.widget.Spinner;
 import android.widget.TextView;
-
 import java.util.ArrayList;
-
 import app.ephod.pentecost.pentecost.R;
 import io.ghyeok.stickyswitch.widget.StickySwitch;
 
@@ -63,6 +60,8 @@ public class PaymentView extends LinearLayout {
         return payButton;
     }
 
+
+
     Integer[] imageArray = {R.drawable.visa, R.drawable.mastercard, R.drawable.discover, R.drawable.american_express};
 
     public void setCardNumber(String mCreditNumber) {
@@ -95,14 +94,14 @@ public class PaymentView extends LinearLayout {
         initView(context);
     }
 
-    public PaymentView(Context context, @Nullable AttributeSet attrs) {
+    public PaymentView(Context context, AttributeSet attrs) {
         super(context, attrs);
         this.mContext = context;
         this.attributeSet = attrs;
         initView(context);
     }
 
-    public PaymentView(Context context, @Nullable AttributeSet attrs, int defStyleAttr) {
+    public PaymentView(Context context, AttributeSet attrs, int defStyleAttr) {
         super(context, attrs, defStyleAttr);
         this.mContext = context;
         this.attributeSet = attrs;
