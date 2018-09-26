@@ -7,6 +7,14 @@
         </attr>
         <attr name="pentecostBackgroundColor" format="reference|color"/>
         <attr name="pentecostBackgroundDrawable" format="reference"/>
-        <attr name="pentecostHeaderSrc" format="reference"/>
+        <attr name="pentecostHeaderTitle" format="reference|string"/>
+        <attr name="pentecostHeaderBackgroundDrawable" format="reference"/>
+
+        <attr name="pentecostHeaderBorderRadius" format="reference|dimension"/>
+
+        <attr name="pentecostHeaderBackground" format="enum">
+            <enum name="show" value="0" />
+            <enum name="hide" value="1" />
+        </attr>
     </declare-styleable>
 </resources>

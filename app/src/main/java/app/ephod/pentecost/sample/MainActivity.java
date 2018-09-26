@@ -37,6 +37,9 @@ public class MainActivity extends AppCompatActivity {
         };
 
         paymentView.setBanksSpinner(arraySpinner);
+        paymentView.setPentecostBackgroundColor(getResources().getColor(R.color.gold));
+
+        paymentView.getHeaderContentView().setTextColor(getResources().getColor(R.color.cardview_dark_background));
 
         paymentView.setBillContent("₦5000");
     }

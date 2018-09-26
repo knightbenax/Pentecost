@@ -10,4 +10,5 @@
     <string name="account">Account</string>
     <string name="card">Card</string>
     <string name="account_number">Account Number</string>
+    <string name="header_image">Header Image</string>
 </resources>

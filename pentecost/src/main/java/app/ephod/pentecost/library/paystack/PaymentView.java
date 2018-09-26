@@ -6,7 +6,10 @@ import android.content.res.TypedArray;
 import android.graphics.Color;
 import android.graphics.PorterDuff;
 import android.graphics.drawable.Drawable;
+import android.graphics.drawable.GradientDrawable;
+import android.graphics.drawable.ShapeDrawable;
 import android.os.Build;
+import android.support.annotation.Dimension;
 import android.support.v4.content.ContextCompat;
 import android.support.v4.graphics.drawable.DrawableCompat;
 import android.text.Editable;
@@ -24,6 +27,9 @@ import android.widget.ProgressBar;
 import android.widget.RelativeLayout;
 import android.widget.Spinner;
 import android.widget.TextView;
+
+import org.w3c.dom.Text;
+
 import java.util.ArrayList;
 import app.ephod.pentecost.pentecost.R;
 import io.ghyeok.stickyswitch.widget.StickySwitch;
@@ -37,8 +43,12 @@ public class PaymentView extends LinearLayout {
 
     Drawable headerSrc;
     String theme = "0";
+
+    String headerTitleText = "";
+    String headerBackgroundBoolean = "0";
     Drawable background;
-    String backgroundColor;
+    int backgroundColor;
+    float borderRadius;
     String billHeader;
     String billContent;
 
@@ -47,8 +57,12 @@ public class PaymentView extends LinearLayout {
     EditText creditCCV;
 
 
+    LinearLayout secondParentView;
+    RelativeLayout parentView;
     LinearLayout cardHolder, bankHolder;
     StickySwitch stickySwitch;
+
+    TextView headerTitle, headerContent;
 
     Button payButton;
     ProgressBar progressBar;
@@ -58,6 +72,13 @@ public class PaymentView extends LinearLayout {
 
     public Button getPayButton() {
         return payButton;
+    }
+
+    public TextView getHeaderTitleView() {
+        return headerTitle;
+    }
+    public TextView getHeaderContentView() {
+        return headerContent;
     }
 
 
@@ -120,7 +141,9 @@ public class PaymentView extends LinearLayout {
 
     public void setHeaderSrc(Drawable headerSrc) {
         this.headerSrc = headerSrc;
+        headerImage.setImageDrawable(headerSrc);
     }
+
 
     public void setPentecostTheme(String theme) {
         this.theme = theme;
@@ -128,18 +151,28 @@ public class PaymentView extends LinearLayout {
 
     public void setBillHeader(String billHeader) {
         this.billHeader = billHeader;
+        headerTitle.setText(billHeader);
     }
 
     public void setBillContent(String billContent) {
         this.billContent = billContent;
+        headerContent.setText(billContent);
     }
 
     public void setPentecostBackground(Drawable background) {
         this.background = background;
+        secondParentView.setBackgroundResource(0);
+        parentView.setBackground(background);
     }
 
-    public void setPentecostBackgroundColor(String backgroundColor) {
+    public void setPentecostBackgroundColor(int backgroundColor) {
         this.backgroundColor = backgroundColor;
+
+        //Need to tidy this up
+        //String temp = String.valueOf(backgroundColor);
+        //int bgColor = Color.parseColor(temp);
+        secondParentView.setBackground(null);
+        parentView.setBackgroundColor(backgroundColor);
     }
 
     public void showLoader(){
@@ -177,6 +210,8 @@ public class PaymentView extends LinearLayout {
         }
     }
 
+    ImageView headerImage;
+
     private void initView(Context context){
 
         //inflate layout
@@ -184,16 +219,19 @@ public class PaymentView extends LinearLayout {
 
         //init views
         ImageView headerView = view.findViewById(R.id.header_view);
-        RelativeLayout parentView = view.findViewById(R.id.parent_view);
+        parentView = view.findViewById(R.id.parent_view);
         //EditText creditEdit = view.findViewById(R.id.credit_card_number);
         //EditText ccvEdit = view.findViewById(R.id.credit_card_ccv);
         //EditText dateEdit = view.findViewById(R.id.credit_card_expiry);
         ImageView secureLogo = view.findViewById(R.id.secure_logo);
 
-        LinearLayout secondParentView = view.findViewById(R.id.second_parent);
+        secondParentView = view.findViewById(R.id.second_parent);
 
         TextView billHeaderText = view.findViewById(R.id.bill_header);
         TextView billHeaderContent = view.findViewById(R.id.bill_content);
+
+        TextView left_indicator = findViewById(R.id.left_indicator);
+        TextView right_indicator = findViewById(R.id.right_indicator);
 
         creditNumber = findViewById(R.id.credit_card_number);
         creditMonth = findViewById(R.id.credit_card_expiry);
@@ -201,9 +239,12 @@ public class PaymentView extends LinearLayout {
 
         cardHolder = findViewById(R.id.card_details_section);
         bankHolder = findViewById(R.id.bank_details_section);
-
         payButton = findViewById(R.id.pay_button);
         progressBar = findViewById(R.id.progress_bar);
+        headerImage = findViewById(R.id.header_view);
+
+        headerTitle = findViewById(R.id.bill_header);
+        headerContent = findViewById(R.id.bill_content);
 
         tintProgressBar(progressBar);
         setTextWatchers();
@@ -211,7 +252,39 @@ public class PaymentView extends LinearLayout {
         //we are setting the background resource here again because MorphButton overrides what is set in the xml
         payButton.setBackgroundResource(R.drawable.payment_button);
 
+
+
         TypedArray arr = mContext.obtainStyledAttributes(attributeSet, R.styleable.PaymentView, styleAttr, 0);
+
+        GradientDrawable gradientDrawable = new GradientDrawable();
+        GradientDrawable parentGradientDrawable = new GradientDrawable();
+
+        borderRadius =  arr.getDimension(R.styleable.PaymentView_pentecostHeaderBorderRadius, getResources().getDimension(R.dimen.size_10));
+
+        Log.e("Radius", String.valueOf(borderRadius));
+
+        gradientDrawable.setShape(GradientDrawable.RECTANGLE);
+        gradientDrawable.setColor(getResources().getColor(R.color.transparent));
+        float[] image_radii = {borderRadius, borderRadius, 0f, 0f};
+        gradientDrawable.setCornerRadii(image_radii);
+
+        Log.e("Radius", String.valueOf(borderRadius));
+
+
+        parentGradientDrawable.setShape(GradientDrawable.RECTANGLE);
+        parentGradientDrawable.setColor(getResources().getColor(R.color.transparent));
+        float[] radiii = {borderRadius, borderRadius, borderRadius, borderRadius};
+        parentGradientDrawable.setColor(getResources().getColor(R.color.transparent));
+        int stroke = (int)getResources().getDimension(R.dimen.size_2);
+        parentGradientDrawable.setStroke(stroke, getResources().getColor(R.color.black));
+        parentGradientDrawable.setCornerRadius(borderRadius);
+
+        gradientDrawable.mutate();
+        parentGradientDrawable.mutate();
+
+        //Comeback to this later
+        //headerView.setBackground(gradientDrawable);
+        //parentView.setBackground(parentGradientDrawable);
 
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
             headerView.setClipToOutline(true);
@@ -219,12 +292,19 @@ public class PaymentView extends LinearLayout {
         }
 
         theme = arr.getString(R.styleable.PaymentView_pentecostTheme);
+
+        headerBackgroundBoolean = arr.getString(R.styleable.PaymentView_pentecostHeaderBackground);
         background = arr.getDrawable(R.styleable.PaymentView_pentecostBackgroundDrawable);
-        backgroundColor = arr.getString(R.styleable.PaymentView_pentecostBackgroundColor);
-        headerSrc = arr.getDrawable(R.styleable.PaymentView_pentecostHeaderSrc);
+        backgroundColor = arr.getInt(R.styleable.PaymentView_pentecostBackgroundColor, R.color.default_bg);
+        headerSrc = arr.getDrawable(R.styleable.PaymentView_pentecostHeaderBackgroundDrawable);
+        headerTitleText = arr.getString(R.styleable.PaymentView_pentecostHeaderTitle);
 
         if (theme == null){
             theme = "0";
+        }
+
+        if (headerBackgroundBoolean == null){
+            headerBackgroundBoolean = "0";
         }
 
         arr.recycle();
@@ -237,6 +317,8 @@ public class PaymentView extends LinearLayout {
             secureLogo.setImageResource(R.drawable.white_paystack_logo);
             billHeaderText.setTextColor(getResources().getColor(R.color.white));
             billHeaderContent.setTextColor(getResources().getColor(R.color.white));
+            left_indicator.setTextColor(getResources().getColor(R.color.white));
+            right_indicator.setTextColor(getResources().getColor(R.color.white));
         } else if (theme.equals("1")) {
             parentView.setBackgroundResource(R.drawable.round_white_bg);
             creditNumber.setBackgroundResource(R.drawable.edit_text_white_bg);
@@ -245,20 +327,32 @@ public class PaymentView extends LinearLayout {
             secureLogo.setImageResource(R.drawable.blue_paystack_logo);
             billHeaderText.setTextColor(getResources().getColor(R.color.black));
             billHeaderContent.setTextColor(getResources().getColor(R.color.black));
+            left_indicator.setTextColor(getResources().getColor(R.color.black));
+            right_indicator.setTextColor(getResources().getColor(R.color.black));
+        }
+
+        if (headerBackgroundBoolean.equals("1")){
+            headerImage.setImageResource(0);
         }
 
         Log.e("TAG", theme);
 
         if (background != null){
-            secondParentView.setBackgroundResource(0);
+            secondParentView.setBackground(null);
             parentView.setBackground(background);
         }
 
-        if (backgroundColor != null){
+        if (backgroundColor != R.color.default_bg){
+            secondParentView.setBackground(null);
+            parentView.setBackgroundColor(backgroundColor);
+        }
 
-            int bgColor = Color.parseColor(backgroundColor);
-            secondParentView.setBackgroundResource(0);
-            parentView.setBackgroundColor(bgColor);
+        if (headerSrc != null){
+            headerImage.setImageDrawable(headerSrc);
+        }
+
+        if (headerTitleText != null){
+            headerTitle.setText(headerTitleText);
         }
 
         stickySwitch = view.findViewById(R.id.sticky_switch);
