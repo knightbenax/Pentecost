@@ -56,6 +56,8 @@ public class PaymentView extends LinearLayout {
     EditText creditMonth;
     EditText creditCCV;
 
+    ImageView headerView;
+
 
     LinearLayout secondParentView;
     RelativeLayout parentView;
@@ -172,7 +174,14 @@ public class PaymentView extends LinearLayout {
         //String temp = String.valueOf(backgroundColor);
         //int bgColor = Color.parseColor(temp);
         secondParentView.setBackground(null);
-        parentView.setBackgroundColor(backgroundColor);
+
+        GradientDrawable gradientDrawable = new GradientDrawable();
+        gradientDrawable.setColor(backgroundColor);
+        gradientDrawable.setShape(GradientDrawable.RECTANGLE);
+        gradientDrawable.setCornerRadius(getResources().getDimension(R.dimen.size_5));
+        //gradientDrawable.setStroke((int)getResources().getDimension(R.dimen.size_2), getResources().getColor(R.color.black));
+        parentView.setBackground(gradientDrawable);
+        //parentView.setBackgroundColor(backgroundColor);
     }
 
     public void showLoader(){
@@ -218,7 +227,7 @@ public class PaymentView extends LinearLayout {
         View view = inflate(context, R.layout.paymentview, this);
 
         //init views
-        ImageView headerView = view.findViewById(R.id.header_view);
+        headerView = view.findViewById(R.id.header_view);
         parentView = view.findViewById(R.id.parent_view);
         //EditText creditEdit = view.findViewById(R.id.credit_card_number);
         //EditText ccvEdit = view.findViewById(R.id.credit_card_ccv);
@@ -259,7 +268,7 @@ public class PaymentView extends LinearLayout {
         GradientDrawable gradientDrawable = new GradientDrawable();
         GradientDrawable parentGradientDrawable = new GradientDrawable();
 
-        borderRadius =  arr.getDimension(R.styleable.PaymentView_pentecostHeaderBorderRadius, getResources().getDimension(R.dimen.size_10));
+        borderRadius =  arr.getDimension(R.styleable.PaymentView_pentecostHeaderBorderRadius, getResources().getDimension(R.dimen.size_5));
 
         Log.e("Radius", String.valueOf(borderRadius));
 
@@ -279,8 +288,8 @@ public class PaymentView extends LinearLayout {
         parentGradientDrawable.setStroke(stroke, getResources().getColor(R.color.black));
         parentGradientDrawable.setCornerRadius(borderRadius);
 
-        gradientDrawable.mutate();
-        parentGradientDrawable.mutate();
+        //gradientDrawable.mutate();
+        //parentGradientDrawable.mutate();
 
         //Comeback to this later
         //headerView.setBackground(gradientDrawable);

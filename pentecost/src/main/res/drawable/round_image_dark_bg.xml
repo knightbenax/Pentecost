@@ -5,7 +5,7 @@
 
     <!--<corners android:topLeftRadius="10dp" android:topRightRadius="10dp"
         android:bottomLeftRadius="0.1dp" android:bottomRightRadius="0.1dp"/>-->
-    <corners android:radius="1dp" android:topLeftRadius="10dp" android:topRightRadius="10dp" android:bottomLeftRadius="0dp" android:bottomRightRadius="0dp"/>
+    <corners android:radius="1dp" android:topLeftRadius="@dimen/size_6" android:topRightRadius="@dimen/size_6" android:bottomLeftRadius="0dp" android:bottomRightRadius="0dp"/>
 
 
 </shape>
