@@ -14,7 +14,6 @@
     app:pentecostTheme="black"
     android:id="@+id/paymentView"
     android:layout_height="match_parent">
-
 </app.ephod.pentecost.library.paystack.PaymentView>
 
 </android.support.constraint.ConstraintLayout>
