@@ -45,7 +45,7 @@ allprojects {
 ### Gradle
 
 ```
-implementation 'app.ephod.pentecost:pentecost:1.1.3'
+implementation 'app.ephod.pentecost:pentecost:1.1.6'
 ```
 
 
