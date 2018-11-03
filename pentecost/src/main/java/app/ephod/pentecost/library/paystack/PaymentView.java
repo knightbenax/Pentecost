@@ -69,6 +69,7 @@ public class PaymentView extends LinearLayout {
     Button payButton;
     ProgressBar progressBar;
 
+    ChargeCardListener chargeCardListener;
 
     int formerLength = 0;
 
@@ -353,7 +354,11 @@ public class PaymentView extends LinearLayout {
 
         if (backgroundColor != R.color.default_bg){
             secondParentView.setBackground(null);
-            parentView.setBackgroundColor(backgroundColor);
+            GradientDrawable thisDrawable = new GradientDrawable();
+            thisDrawable.setColor(backgroundColor);
+            thisDrawable.setShape(GradientDrawable.RECTANGLE);
+            thisDrawable.setCornerRadius(getResources().getDimension(R.dimen.size_5));
+            parentView.setBackground(thisDrawable);
         }
 
         if (headerSrc != null){
@@ -382,6 +387,22 @@ public class PaymentView extends LinearLayout {
         });
 
         initSpinner();
+
+        payButton.setOnClickListener(new OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                chargeCardListener.onChargeCard();
+            }
+        });
+    }
+
+    public interface ChargeCardListener{
+        public void onChargeCard();
+        public void onSuccess();
+    }
+
+    public void setChargeCardListener(ChargeCardListener chargeCardListener) {
+        this.chargeCardListener = chargeCardListener;
     }
 
 
