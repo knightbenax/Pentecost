@@ -1,6 +1,7 @@
 package app.ephod.pentecost.library.paystack;
 
 import android.annotation.TargetApi;
+import android.app.DatePickerDialog;
 import android.content.Context;
 import android.content.res.TypedArray;
 import android.graphics.Color;
@@ -20,6 +21,7 @@ import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
+import android.widget.DatePicker;
 import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
@@ -30,7 +32,11 @@ import android.widget.TextView;
 
 import org.w3c.dom.Text;
 
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Calendar;
+import java.util.Locale;
+
 import app.ephod.pentecost.pentecost.R;
 import io.ghyeok.stickyswitch.widget.StickySwitch;
 
@@ -56,6 +62,10 @@ public class PaymentView extends LinearLayout {
     EditText creditMonth;
     EditText creditCCV;
 
+    EditText accountNumber;
+    EditText accountHolderBirthday;
+    Spinner s;
+
     ImageView headerView;
 
 
@@ -69,6 +79,12 @@ public class PaymentView extends LinearLayout {
     Button payButton;
     ProgressBar progressBar;
 
+    ChargeListener chargeListener;
+
+    int CARD = 0;
+    int BANK = 1;
+
+    int PAYMENT_FROM = CARD;
 
     int formerLength = 0;
 
@@ -98,6 +114,27 @@ public class PaymentView extends LinearLayout {
     public void setCardCCV(String mCreditCCV) {
         this.creditCCV.setText(mCreditCCV);
     }
+
+    public void setAccountNumber(String accountNumber) {
+        this.accountNumber.setText(accountNumber);
+    }
+
+    public void setAccountHolderBirthday(String mAccountHolderBirthday) {
+        this.accountHolderBirthday.setText(mAccountHolderBirthday);
+    }
+
+    public String getAccountNumber() {
+        return accountNumber.getText().toString();
+    }
+
+    public String getAccountHolderBirthday() {
+        return accountHolderBirthday.getText().toString();
+    }
+
+    public String getBankName() {
+        return s.getSelectedItem().toString();
+    }
+
 
     public String getCardNumber() {
         return creditNumber.getText().toString();
@@ -221,6 +258,25 @@ public class PaymentView extends LinearLayout {
 
     ImageView headerImage;
 
+    private void initViews(){
+        creditNumber = findViewById(R.id.credit_card_number);
+        creditMonth = findViewById(R.id.credit_card_expiry);
+        creditCCV = findViewById(R.id.credit_card_ccv);
+
+        cardHolder = findViewById(R.id.card_details_section);
+        bankHolder = findViewById(R.id.bank_details_section);
+        payButton = findViewById(R.id.pay_button);
+        progressBar = findViewById(R.id.progress_bar);
+        headerImage = findViewById(R.id.header_view);
+
+        headerTitle = findViewById(R.id.bill_header);
+        headerContent = findViewById(R.id.bill_content);
+
+        accountNumber = findViewById(R.id.account_number);
+        accountHolderBirthday = findViewById(R.id.account_holder_birthday);
+        s = findViewById(R.id.bank_name);
+    }
+
     private void initView(Context context){
 
         //inflate layout
@@ -242,18 +298,7 @@ public class PaymentView extends LinearLayout {
         TextView left_indicator = findViewById(R.id.left_indicator);
         TextView right_indicator = findViewById(R.id.right_indicator);
 
-        creditNumber = findViewById(R.id.credit_card_number);
-        creditMonth = findViewById(R.id.credit_card_expiry);
-        creditCCV = findViewById(R.id.credit_card_ccv);
-
-        cardHolder = findViewById(R.id.card_details_section);
-        bankHolder = findViewById(R.id.bank_details_section);
-        payButton = findViewById(R.id.pay_button);
-        progressBar = findViewById(R.id.progress_bar);
-        headerImage = findViewById(R.id.header_view);
-
-        headerTitle = findViewById(R.id.bill_header);
-        headerContent = findViewById(R.id.bill_content);
+        initViews();
 
         tintProgressBar(progressBar);
         setTextWatchers();
@@ -353,7 +398,11 @@ public class PaymentView extends LinearLayout {
 
         if (backgroundColor != R.color.default_bg){
             secondParentView.setBackground(null);
-            parentView.setBackgroundColor(backgroundColor);
+            GradientDrawable thisDrawable = new GradientDrawable();
+            thisDrawable.setColor(backgroundColor);
+            thisDrawable.setShape(GradientDrawable.RECTANGLE);
+            thisDrawable.setCornerRadius(getResources().getDimension(R.dimen.size_5));
+            parentView.setBackground(thisDrawable);
         }
 
         if (headerSrc != null){
@@ -372,16 +421,76 @@ public class PaymentView extends LinearLayout {
                     case LEFT:
                         setVisibility(bankHolder, View.GONE);
                         setVisibility(cardHolder, View.VISIBLE);
+                        PAYMENT_FROM = CARD;
                         break;
                     case RIGHT:
                         setVisibility(bankHolder, View.VISIBLE);
                         setVisibility(cardHolder, View.GONE);
+                        PAYMENT_FROM = BANK;
                         break;
                 }
             }
         });
 
         initSpinner();
+
+        payButton.setOnClickListener(new OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                switch (PAYMENT_FROM){
+                    case 0: //This is Card
+                        if (!getCardNumber().equals("") && !getCardCCV().equals("") && !getCardExpDate().equals("")) {
+                            chargeListener.onChargeCard();
+                        }
+                    case 1: //This is bank
+                        if (!getBankName().equals("") && !getAccountNumber().equals("") && !getAccountHolderBirthday().equals("")) {
+                            chargeListener.onChargeBank();
+                        }
+                }
+            }
+        });
+
+        accountHolderBirthday.setOnClickListener(new OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                new DatePickerDialog( getContext(), datePickerDialog, myCalendar
+                        .get(Calendar.YEAR), myCalendar.get(Calendar.MONTH),
+                        myCalendar.get(Calendar.DAY_OF_MONTH)).show();
+            }
+        });
+    }
+
+    Calendar myCalendar = Calendar.getInstance();
+    DatePickerDialog.OnDateSetListener datePickerDialog = new DatePickerDialog.OnDateSetListener() {
+        @Override
+        public void onDateSet(DatePicker datePicker, int year, int monthOfYear, int dayOfMonth) {
+            myCalendar.set(Calendar.YEAR, year);
+            myCalendar.set(Calendar.MONTH, monthOfYear);
+            myCalendar.set(Calendar.DAY_OF_MONTH, dayOfMonth);
+            updateDateText();
+        }
+    };
+
+    private void updateDateText(){
+        String format = "YYYY-MM-DD"; //1995-12-23 from PayStack
+        SimpleDateFormat simpleDateFormat = new SimpleDateFormat(format, Locale.getDefault());
+
+        accountHolderBirthday.setText(simpleDateFormat.format(myCalendar.getTime()));
+    }
+
+
+    public interface ChargeListener{
+        public void onChargeCard();
+        public void onChargeBank();
+        public void onSuccess();
+    }
+
+    public void setChargeListener(ChargeListener chargeListener) {
+        this.chargeListener = chargeListener;
+    }
+
+    public int getPAYMENT_FROM() {
+        return PAYMENT_FROM;
     }
 
 
@@ -456,7 +565,7 @@ public class PaymentView extends LinearLayout {
     private void initSpinner(){
         arraySpinner = new String[]{};
 
-        Spinner s = findViewById(R.id.bank_name);
+
         ArrayAdapter<String> adapter = new ArrayAdapter<>(getContext(), R.layout.layout_spinner_item, arraySpinner);
         adapter.setDropDownViewResource(R.layout.layout_spinner_item_drop);
         s.setAdapter(adapter);
