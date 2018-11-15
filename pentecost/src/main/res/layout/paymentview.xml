@@ -141,46 +141,47 @@
 
 
                     <LinearLayout
+                        android:id="@+id/card_details_section"
                         android:layout_width="match_parent"
-                        android:orientation="vertical"
-                        android:gravity="center_vertical"
+                        android:layout_height="wrap_content"
                         android:layout_marginLeft="@dimen/size_16"
                         android:layout_marginRight="@dimen/size_16"
-                        android:id="@+id/card_details_section"
                         android:layout_marginBottom="@dimen/size_40"
-                        android:layout_height="wrap_content">
+                        android:gravity="center_vertical"
+                        android:orientation="vertical"
+                        android:visibility="gone">
 
                         <EditText
+                            android:id="@+id/credit_card_number"
                             style="@style/EditTextStyle"
                             android:hint="@string/card_number"
-                            android:inputType="number"
-                            android:id="@+id/credit_card_number"/>
+                            android:inputType="number" />
 
                         <LinearLayout
                             style="@style/CCVDateHolder"
                             android:orientation="horizontal">
 
                             <EditText
-                                android:layout_width="0dp"
-                                android:layout_weight="0.5"
-                                style="@style/EditTextStyle"
-                                android:layout_marginRight="5dp"
-                                android:maxLength="5"
-                                android:inputType="date"
-                                android:hint="@string/mm_yy"
                                 android:id="@+id/credit_card_expiry"
-                                android:layout_marginEnd="5dp" />
+                                style="@style/EditTextStyle"
+                                android:layout_width="0dp"
+                                android:layout_marginEnd="5dp"
+                                android:layout_marginRight="5dp"
+                                android:layout_weight="0.5"
+                                android:hint="@string/mm_yy"
+                                android:inputType="date"
+                                android:maxLength="5" />
 
                             <EditText
-                                android:layout_width="0dp"
-                                android:layout_weight="0.5"
-                                android:maxLength="4"
+                                android:id="@+id/credit_card_ccv"
                                 style="@style/EditTextStyle"
+                                android:layout_width="0dp"
                                 android:layout_marginLeft="5dp"
+                                android:layout_weight="0.5"
                                 android:hint="@string/cvv"
                                 android:inputType="number"
 
-                                android:id="@+id/credit_card_ccv"/>
+                                android:maxLength="4" />
 
 
                         </LinearLayout>
@@ -189,27 +190,34 @@
 
 
                     <LinearLayout
+                        android:id="@+id/bank_details_section"
                         android:layout_width="match_parent"
-                        android:orientation="vertical"
-                        android:visibility="gone"
-                        android:gravity="center_vertical"
+                        android:layout_height="wrap_content"
                         android:layout_marginLeft="@dimen/size_16"
                         android:layout_marginRight="@dimen/size_16"
-                        android:id="@+id/bank_details_section"
                         android:layout_marginBottom="@dimen/size_40"
-                        android:layout_height="wrap_content">
+                        android:gravity="center_vertical"
+                        android:orientation="vertical">
 
                         <Spinner
+                            android:id="@+id/bank_name"
                             style="@style/EditTextStyle"
-                            android:inputType="number"
-                            android:id="@+id/bank_name"/>
+                            android:inputType="number" />
 
                         <EditText
+                            android:id="@+id/account_number"
                             style="@style/EditTextStyle"
-                            android:hint="@string/account_number"
                             android:layout_marginTop="@dimen/size_16"
-                            android:inputType="number"
-                            android:id="@+id/account_number"/>
+                            android:hint="@string/account_number"
+                            android:inputType="number" />
+
+                        <EditText
+                            android:id="@+id/account_holder_birthday"
+                            style="@style/EditTextStyle"
+                            android:layout_marginTop="@dimen/size_16"
+                            android:focusable="false"
+                            android:hint="@string/birthday_of_the_account_holder"
+                            android:inputType="number" />
 
                     </LinearLayout>
 

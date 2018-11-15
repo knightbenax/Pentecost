@@ -11,4 +11,5 @@
     <string name="card">Card</string>
     <string name="account_number">Account Number</string>
     <string name="header_image">Header Image</string>
+    <string name="birthday_of_the_account_holder">Birthday of the account holder</string>
 </resources>
