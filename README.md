@@ -6,7 +6,7 @@
 Pentecost gives you a quick customizable PaymentView to use with PayStack. Simply show and hide as needed. Now supports Paystack payment with banks. 
 
 
-![Screenshot](/one@2x.png?raw=true)
+![Screenshot](/two@2x.png?raw=true)
 
 
 ## Why PayStack?
