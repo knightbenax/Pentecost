@@ -149,7 +149,7 @@
                         android:layout_marginBottom="@dimen/size_40"
                         android:gravity="center_vertical"
                         android:orientation="vertical"
-                        android:visibility="gone">
+                        >
 
                         <EditText
                             android:id="@+id/credit_card_number"
@@ -193,6 +193,7 @@
                         android:id="@+id/bank_details_section"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
+                        android:visibility="gone"
                         android:layout_marginLeft="@dimen/size_16"
                         android:layout_marginRight="@dimen/size_16"
                         android:layout_marginBottom="@dimen/size_40"
