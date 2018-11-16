@@ -472,7 +472,7 @@ public class PaymentView extends LinearLayout {
     };
 
     private void updateDateText(){
-        String format = "YYYY-MM-DD"; //1995-12-23 from PayStack
+        String format = "yyyy-MM-dd"; //1995-12-23 from PayStack
         SimpleDateFormat simpleDateFormat = new SimpleDateFormat(format, Locale.getDefault());
 
         accountHolderBirthday.setText(simpleDateFormat.format(myCalendar.getTime()));
