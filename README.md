@@ -3,7 +3,11 @@
 [![Knightbenax Approved](/knightbenax-approved-blue.svg)](https://twitter.com/knightbenax) [![Platform](/platform.svg)]()
 
 
-Pentecost gives you a quick customizable PaymentView to use with PayStack. Simply show and hide as needed. Now supports Paystack payment with banks. 
+
+Pentecost gives you a quick customizable PaymentView to use with PayStack. Simply show and hide as needed. 
+Now supports Paystack payment with banks. 
+
+
 
 
 ![Screenshot](/two@2x.png?raw=true)
@@ -36,7 +40,7 @@ allprojects {
 <dependency> 
     <groupId>app.ephod.pentecost</groupId> 
     <artifactId>pentecost</artifactId> 
-    <version>1.0.1</version> 
+    <version>1.1.12</version> 
     <type>pom</type> 
 </dependency>
 ``` 
@@ -47,6 +51,7 @@ allprojects {
 ```
 implementation 'app.ephod.pentecost:pentecost:1.1.12'
 ```
+
 
 
 ## Setup
@@ -63,11 +68,12 @@ paymentView.setBanksSpinner(String[] arrayOfBanks)
 Then you are all set. Pentecost handles the birthday field by showing a datepicker dialog when the user taps. 
 
 
+
 ## Handling OTP and Phone Token
 
 Paystack's pay with bank is a three step process where the user is asked to input his/her OTP sent from the bank and then the token sent to the registered phone number with the paying account. Ideally you can show your own OTP and Phone Token views but since you already have the Paystack SDK added, we can just borrow views from there to use. 
 
-1. Send bank details and birthday to server when then sends to Paystack. 
+1. Send bank details and birthday to server which then sends to Paystack. 
 2. Save the reference gotten from the response and show the OTP view. Send response to your server. Your server hits Paystack
 3. You can save the reference again from the response or if you are hard guy, you can fetch the previously saved one. Show the Phone Token view. Send response to your server. Your server hits Paystack.
 
@@ -124,6 +130,7 @@ new BankOtpAsyncTask(reference,"Enter Bank Otp").execute();
 ```
 
 The same can be done for the Phone Token.
+
 
 
 ## Usage - XML
