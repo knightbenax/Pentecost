@@ -1,12 +1,14 @@
 # Pentecost - Payment Android UI Library for PayStack
 
 [![Knightbenax Approved](/knightbenax-approved-blue.svg)](https://twitter.com/knightbenax) [![Platform](/platform.svg)]()
-
+[![Android Arsenal]( https://img.shields.io/badge/Android%20Arsenal-Pentecost-green.svg?style=flat )]( https://android-arsenal.com/details/1/7327 )<br>
+<br>
 
 
 Pentecost gives you a quick customizable PaymentView to use with PayStack. Simply show and hide as needed. 
 Now supports Paystack payment with banks. 
-
+<br>
+<br>
 
 
 
