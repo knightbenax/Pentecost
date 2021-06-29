@@ -140,10 +140,10 @@ The same can be done for the Phone Token.
 #### Define in XML
 
 ```
-<app.ephod.pentecost.pentecost.paystack.PaymentView
-    android:layout_width="match_parent"
-    android:id="@+id/paymentView"
-    android:layout_height="match_parent">
+<app.ephod.pentecost.library.paystack.PaymentView
+                android:layout_width="match_parent"
+                android:id="@+id/paymentView"
+                android:layout_height="match_parent"/>
 ```
 
 #### Set Theme
