@@ -28,7 +28,6 @@ Add to your root build.gradle at the end of repositories
 allprojects {
     repositories {
         ...
-        jcenter()
         maven { url 'https://jitpack.io' }
         ...
     }
@@ -40,10 +39,9 @@ allprojects {
 
 ```
 <dependency> 
-    <groupId>app.ephod.pentecost</groupId> 
+    <groupId>com.github.knightbenax</groupId>
     <artifactId>pentecost</artifactId> 
-    <version>1.1.12</version> 
-    <type>pom</type> 
+    <version>1.1.15</version> 
 </dependency>
 ``` 
 
@@ -51,7 +49,7 @@ allprojects {
 ### Gradle
 
 ```
-implementation 'app.ephod.pentecost:pentecost:1.1.12'
+implementation 'com.github.knightbenax:Pentecost:1.1.15'
 ```
 
 
