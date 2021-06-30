@@ -12,7 +12,7 @@ ext{
     libraryDescription = 'Payment Android UI Library for PayStack'
     siteUrl = 'https://github.com/knightbenax/Pentecost'
     gitUrl = 'https://github.com/knightbenax/Pentecost.git'
-    libraryVersion = '1.1.13'
+    libraryVersion = '1.1.14'
     developerId = 'knightbenax'
     developerName = 'Ashefor Reuben Bezaleel'
     developerEmail = 'knightbenax@gmail.com'
