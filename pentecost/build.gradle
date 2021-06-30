@@ -29,8 +29,8 @@ android {
     defaultConfig {
         minSdkVersion 16
         targetSdkVersion 30
-        versionCode 10
-        versionName '1.1.13'
+        versionCode 11
+        versionName '1.1.14'
         testInstrumentationRunner "android.support.test.runner.AndroidJUnitRunner"
     }
 
@@ -45,7 +45,7 @@ dependencies {
     androidTestImplementation 'androidx.test.ext:junit:1.1.2'
     androidTestImplementation 'com.android.support.test.espresso:espresso-core:3.0.2'
     implementation "androidx.cardview:cardview:1.0.0"
-    implementation 'com.github.GwonHyeok:StickySwitch:0.0.16'
+    api 'com.github.GwonHyeok:StickySwitch:0.0.16'
 }
 
 repositories {
