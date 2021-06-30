@@ -4,15 +4,10 @@ import android.annotation.TargetApi;
 import android.app.DatePickerDialog;
 import android.content.Context;
 import android.content.res.TypedArray;
-import android.graphics.Color;
 import android.graphics.PorterDuff;
 import android.graphics.drawable.Drawable;
 import android.graphics.drawable.GradientDrawable;
-import android.graphics.drawable.ShapeDrawable;
 import android.os.Build;
-import android.support.annotation.Dimension;
-import android.support.v4.content.ContextCompat;
-import android.support.v4.graphics.drawable.DrawableCompat;
 import android.text.Editable;
 import android.text.TextWatcher;
 import android.util.AttributeSet;
@@ -30,7 +25,8 @@ import android.widget.RelativeLayout;
 import android.widget.Spinner;
 import android.widget.TextView;
 
-import org.w3c.dom.Text;
+import androidx.core.content.ContextCompat;
+import androidx.core.graphics.drawable.DrawableCompat;
 
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
@@ -39,6 +35,7 @@ import java.util.Locale;
 
 import app.ephod.pentecost.pentecost.R;
 import io.ghyeok.stickyswitch.widget.StickySwitch;
+
 
 public class PaymentView extends LinearLayout {
 
@@ -73,6 +70,7 @@ public class PaymentView extends LinearLayout {
     RelativeLayout parentView;
     LinearLayout cardHolder, bankHolder;
     StickySwitch stickySwitch;
+    LinearLayout selectorControl;
 
     TextView headerTitle, headerContent;
 
@@ -291,7 +289,7 @@ public class PaymentView extends LinearLayout {
         ImageView secureLogo = view.findViewById(R.id.secure_logo);
 
         secondParentView = view.findViewById(R.id.second_parent);
-
+        selectorControl = view.findViewById(R.id.selector_control_bg);
         TextView billHeaderText = view.findViewById(R.id.bill_header);
         TextView billHeaderContent = view.findViewById(R.id.bill_content);
 
@@ -305,8 +303,6 @@ public class PaymentView extends LinearLayout {
 
         //we are setting the background resource here again because MorphButton overrides what is set in the xml
         payButton.setBackgroundResource(R.drawable.payment_button);
-
-
 
         TypedArray arr = mContext.obtainStyledAttributes(attributeSet, R.styleable.PaymentView, styleAttr, 0);
 
@@ -493,6 +489,21 @@ public class PaymentView extends LinearLayout {
         return PAYMENT_FROM;
     }
 
+    public void setPAYMENT_FROM(PAYMENT_FORM_TYPE value){
+        switch (value){
+            case CARD:
+                setVisibility(bankHolder, View.GONE);
+                setVisibility(cardHolder, View.VISIBLE);
+                PAYMENT_FROM = CARD;
+                break;
+            case BANK:
+                setVisibility(bankHolder, View.VISIBLE);
+                setVisibility(cardHolder, View.GONE);
+                PAYMENT_FROM = BANK;
+                break;
+        }
+        setVisibility(selectorControl, View.GONE);
+    }
 
     private void setVisibility(View view, int visibility){
         view.setVisibility(visibility);

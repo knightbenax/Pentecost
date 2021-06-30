@@ -3,6 +3,6 @@
 
     <solid android:color="@color/paymentBackground"/>
     <corners android:radius="@dimen/size_6"/>
-    <stroke android:color="@color/black" android:width="@dimen/size_2"/>
+
 
 </shape>

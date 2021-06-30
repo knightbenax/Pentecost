@@ -1,10 +1,11 @@
 package app.ephod.pentecost.sample;
 
-import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
 
+import androidx.appcompat.app.AppCompatActivity;
+import app.ephod.pentecost.library.paystack.PAYMENT_FORM_TYPE;
 import app.ephod.pentecost.library.paystack.PaymentView;
 
 public class MainActivity extends AppCompatActivity {
@@ -36,10 +37,12 @@ public class MainActivity extends AppCompatActivity {
                 "Wema Bank", "Zenith Bank"
         };
 
+        paymentView.setPAYMENT_FROM(PAYMENT_FORM_TYPE.CARD);
         paymentView.setBanksSpinner(arraySpinner);
         paymentView.setPentecostBackgroundColor(getResources().getColor(R.color.gold));
 
-        paymentView.getHeaderContentView().setTextColor(getResources().getColor(R.color.cardview_dark_background));
+        //paymentView.getHeaderContentView().setTextColor(getResources().getColor(R.color.cardview_dark_background));
+
 
         paymentView.setBillContent("₦5000");
     }
