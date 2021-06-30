@@ -37,7 +37,7 @@ public class MainActivity extends AppCompatActivity {
                 "Wema Bank", "Zenith Bank"
         };
 
-        paymentView.setPAYMENT_FROM(PAYMENT_FORM_TYPE.CARD);
+        //paymentView.setPAYMENT_FROM(PAYMENT_FORM_TYPE.CARD);
         paymentView.setBanksSpinner(arraySpinner);
         paymentView.setPentecostBackgroundColor(getResources().getColor(R.color.gold));
 

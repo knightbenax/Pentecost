@@ -12,7 +12,7 @@ ext{
     libraryDescription = 'Payment Android UI Library for PayStack'
     siteUrl = 'https://github.com/knightbenax/Pentecost'
     gitUrl = 'https://github.com/knightbenax/Pentecost.git'
-    libraryVersion = '1.1.14'
+    libraryVersion = '1.1.15'
     developerId = 'knightbenax'
     developerName = 'Ashefor Reuben Bezaleel'
     developerEmail = 'knightbenax@gmail.com'
@@ -29,8 +29,8 @@ android {
     defaultConfig {
         minSdkVersion 16
         targetSdkVersion 30
-        versionCode 11
-        versionName '1.1.14'
+        versionCode 12
+        versionName '1.1.15'
         testInstrumentationRunner "android.support.test.runner.AndroidJUnitRunner"
     }
 
@@ -45,7 +45,7 @@ dependencies {
     androidTestImplementation 'androidx.test.ext:junit:1.1.2'
     androidTestImplementation 'com.android.support.test.espresso:espresso-core:3.0.2'
     implementation "androidx.cardview:cardview:1.0.0"
-    api 'com.github.GwonHyeok:StickySwitch:0.0.16'
+    compile 'com.github.GwonHyeok:StickySwitch:0.0.16'
 }
 
 repositories {
