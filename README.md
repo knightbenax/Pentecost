@@ -5,7 +5,7 @@
 <br>
 
 
-Pentecost gives you a quick customizable PaymentView to use with PayStack. Simply show and hide as needed. 
+Pentecost gives you a quick customizable PaymentView to use with PayStack. Show and hide as needed. 
 Now supports Paystack payment with banks. 
 <br>
 <br>
@@ -17,7 +17,7 @@ Now supports Paystack payment with banks.
 
 ## Why PayStack?
 
-Why not PayStack? PayStack is currently one of the easiest and fastest way to receive payments. Their Android SDK gets you set up in a few minutes.
+Why not PayStack? PayStack is currently one of the easiest and fastest ways to receive payments. Their Android SDK gets you set up in a few minutes.
 
 
 ## Installation
